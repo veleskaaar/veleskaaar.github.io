@@ -175,12 +175,13 @@ body.interactive-home-shell {
   z-index: 5;
   width: min(1200px, calc(100% - 32px));
   min-height: 100vh;
+  box-sizing: border-box;
   margin: 0 auto;
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: clamp(10px, 2vh, 18px);
-  padding: clamp(88px, 10vh, 118px) 0 clamp(56px, 8vh, 82px);
+  gap: clamp(6px, 1.2vh, 12px);
+  padding: clamp(86px, 9vh, 108px) 0 clamp(38px, 6vh, 64px);
   text-align: center;
 }
 
@@ -194,8 +195,8 @@ body.interactive-home-shell {
 
 .quiet-hero__portrait-field {
   position: relative;
-  width: min(520px, 80vw);
-  height: clamp(270px, 42vh, 430px);
+  width: min(620px, 84vw);
+  height: clamp(340px, 54vh, 460px);
   cursor: crosshair;
   touch-action: none;
 }
@@ -224,7 +225,7 @@ body.interactive-home-shell {
 .quiet-hero__title-field {
   position: relative;
   width: min(1060px, 100%);
-  height: clamp(122px, 18vw, 210px);
+  height: clamp(82px, 12vw, 132px);
   cursor: crosshair;
   touch-action: none;
 }
@@ -711,15 +712,16 @@ body.interactive-home-shell {
 
   .quiet-hero__content {
     width: min(100% - 28px, 620px);
-    padding-top: 144px;
+    padding-top: 132px;
   }
 
   .quiet-hero__portrait-field {
-    height: clamp(230px, 36vh, 320px);
+    width: min(520px, 84vw);
+    height: clamp(300px, 46vh, 390px);
   }
 
   .quiet-hero__title-field {
-    height: clamp(152px, 39vw, 210px);
+    height: clamp(104px, 26vw, 150px);
   }
 
   .quiet-profile__frame {
@@ -748,8 +750,8 @@ body.interactive-home-shell {
   }
 
   .quiet-hero__portrait-field {
-    width: min(340px, 80vw);
-    height: clamp(210px, 34vh, 280px);
+    width: min(360px, 84vw);
+    height: clamp(260px, 42vh, 330px);
   }
 
   .quiet-profile {

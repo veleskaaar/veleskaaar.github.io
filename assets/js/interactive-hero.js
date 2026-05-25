@@ -271,7 +271,7 @@
     var drawWidth = portraitImage.naturalWidth * scale;
     var drawHeight = portraitImage.naturalHeight * scale;
     var drawX = (rect.width - drawWidth) / 2;
-    var drawY = (rect.height - drawHeight) * 0.35;
+    var drawY = drawHeight > rect.height ? 0 : (rect.height - drawHeight) / 2;
     portraitDraw = { x: drawX, y: drawY, width: drawWidth, height: drawHeight };
 
     offCtx.fillStyle = "#000000";
