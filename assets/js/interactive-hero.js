@@ -121,7 +121,7 @@
         "  columbia: 'xc2826@columbia.edu',\n" +
         "  zhimiao: 'zhimiao-email@example.com',\n" +
         "  github: 'https://github.com/veleskaaar',\n" +
-        "  linkedin: 'https://www.linkedin.com/in/your-linkedin-profile/',\n" +
+        "  linkedin: 'https://www.linkedin.com/in/xi-veleska-chen-226176303/?skipRedirect=true',\n" +
         "  location: 'New York, NY',\n" +
         "  note: 'Static-site mail form: opens your email client with a drafted message.'\n" +
         "};\n\n" +
@@ -134,7 +134,7 @@
       actions: [
         { label: "Email Columbia", href: "mailto:xc2826@columbia.edu" },
         { label: "GitHub", href: "https://github.com/veleskaaar", external: true },
-        { label: "LinkedIn", href: "https://www.linkedin.com/in/your-linkedin-profile/", external: true }
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/xi-veleska-chen-226176303/?skipRedirect=true", external: true }
       ]
     }
   };
