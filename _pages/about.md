@@ -2,6 +2,8 @@
 permalink: /
 title: "Xi Chen"
 author_profile: true
+interactive_hero: true
+hide_title: true
 redirect_from: 
   - /about/
   - /about.html

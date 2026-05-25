@@ -1,3 +1,6 @@
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
+{% if page.interactive_hero %}
+<script src="{{ base_path }}/assets/js/interactive-hero.js"></script>
+{% endif %}
 
 {% include analytics.html %}
