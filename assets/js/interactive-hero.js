@@ -57,18 +57,16 @@
     education: {
       title: "module.education",
       code: block([
-        "EDUCATION",
-        "",
-        "Columbia University",
-        "M.A. in Economics | 2025-2026 expected",
+        "## Columbia University",
+        "> M.A. in Economics | 2025-2026 expected",
         "I am currently pursuing an M.A. in Economics at Columbia University. My graduate training focuses on microeconomic theory, behavioral economics, and empirical methods, and has strengthened my interest in using formal economic reasoning to study decision-making, incentives, and behavior in organizational and institutional settings.",
         "",
-        "Soochow University",
-        "B.A. in Economics, minor in Applied Psychology | 2021-2025",
+        "## Soochow University",
+        "> B.A. in Economics, minor in Applied Psychology | 2021-2025",
         "I received my B.A. in Economics from Soochow University, with a minor in Applied Psychology. This combination shaped the interdisciplinary foundation of my research interests: I approach economic behavior not only through incentives and constraints, but also through cognition, judgment, motivation, and social context.",
         "",
-        "University of California, Berkeley",
-        "Visiting Student, Berkeley Global Access Program | Spring 2024",
+        "## University of California, Berkeley",
+        "> Visiting Student, Berkeley Global Access Program | Spring 2024",
         "As a visiting student at UC Berkeley, I explored topics in economic research and algorithmic approaches. This experience further encouraged my interest in connecting behavioral questions with computational tools, empirical research design, and broader social-scientific inquiry."
       ]),
       actions: []
@@ -76,36 +74,34 @@
     research: {
       title: "module.research",
       code: block([
-        "RESEARCH",
-        "",
-        "Reference Points and Value Uncertainty",
-        "Incoming Summer Research Assistant, Columbia University | supervised by Prof. Mark Dean",
+        "## Reference Points and Value Uncertainty",
+        "> Incoming Summer Research Assistant, Columbia University | supervised by Prof. Mark Dean",
         "I will work as a Summer Research Assistant in the Columbia Economics Department on an ongoing project related to reference points and value uncertainty. This project is closely connected to my interest in behavioral decision theory, especially how individuals form, revise, and act upon reference-dependent evaluations under uncertainty.",
         "",
-        "Letter-Spirit Divergence and Strategic Compliance",
-        "Research Assistant, Columbia Business School, Morris Lab | supervised by Prof. Michael Morris",
+        "## Letter-Spirit Divergence and Strategic Compliance",
+        "> Research Assistant, Columbia Business School, Morris Lab | supervised by Prof. Michael Morris",
         "At Columbia Business School, I contribute to a research project on malicious compliance, strategic rule adherence, and the divergence between the letter and spirit of rules. This work reflects one of my central research interests: how people interpret rules, navigate institutional expectations, and make decisions in environments where formal requirements and social meaning may not fully align.",
         "",
-        "AI-Mediated Negotiation Behavior",
+        "## AI-Mediated Negotiation Behavior",
         "I have also contributed to the design and implementation of a chatbot-based negotiation experiment. This project examines how negotiation behavior may differ when participants interact with AI versus human counterparts, connecting organizational behavior, experimental design, and human-AI interaction.",
         "",
-        "Organizational and Institutional Research Projects",
-        "Research Assistant, Columbia Business School | supervised by Prof. Lori Yue",
+        "## Organizational and Institutional Research Projects",
+        "> Research Assistant, Columbia Business School | supervised by Prof. Lori Yue",
         "I have supported research on how nationalism and patriotism are expressed in organizational narratives and corporate behavior. My work involves literature review, text data collection and coding, and NLP-based semantic analysis of firm communications, which connects my interests in organizational behavior, institutional environments, and computational social science.",
         "",
-        "Older Worker Reemployment",
-        "Researcher, coauthored project under review",
+        "## Older Worker Reemployment",
+        "> Researcher, coauthored project under review",
         "I worked on a structured review project on the reemployment process and experiences of older workers. The project involved large-scale literature screening, bibliometric mapping, and thematic synthesis, and contributed to a coauthored paper currently under review. This experience trained me to think systematically about how individual labor-market experiences are shaped by organizational practices, social perceptions, and institutional structures.",
         "",
-        "Work-Family Conflict and Psychological Resilience",
-        "Capstone Project",
+        "## Work-Family Conflict and Psychological Resilience",
+        "> Capstone Project",
         "For my capstone project, I conducted semi-structured interviews with accompanying mothers to study work-family conflict and psychological resilience. I used NLP-based methods, including SpaCy, Sentence Transformers, VADER, and TextBlob, to analyze interview narratives. This project reflects my broader interest in using computational tools to study psychologically rich and socially embedded human experiences.",
         "",
-        "Human-Computer Interaction and Consumer Choice",
-        "Project Director",
+        "## Human-Computer Interaction and Consumer Choice",
+        "> Project Director",
         "I directed a research project on how human-computer interaction features of smart wearable devices influence consumer purchase intentions. The project combined bibliometric analysis, discrete choice experiment design, survey implementation, and binary logit modeling. It gave me early training in connecting behavioral theory, experimental choice design, and quantitative modeling.",
         "",
-        "Working paper",
+        "## Working paper",
         "To be added."
       ]),
       actions: []
@@ -113,19 +109,23 @@
     cv: {
       title: "module.cv",
       code: block([
-        "CV",
+        "## Xi (Veleska) Chen",
+        "> M.A. Economics student, Columbia University",
         "",
-        "Xi (Veleska) Chen",
-        "M.A. Economics student, Columbia University",
+        "## Research interests",
+        "- Behavioral economics",
+        "- Microeconomic theory",
+        "- Organizational behavior and psychology",
+        "- Computational social science",
         "",
-        "Research interests",
-        "Behavioral economics; microeconomic theory; organizational behavior; psychology; computational social science.",
+        "## Methods",
+        "- Formal economic reasoning",
+        "- Experimental design and survey-based measurement",
+        "- Discrete choice methods",
+        "- NLP/text-as-data analysis",
         "",
-        "Methods",
-        "Formal economic reasoning, experimental design, survey-based measurement, discrete choice methods, NLP/text-as-data analysis.",
-        "",
-        "Programming and tools",
-        "Python, C++, SPSS, SQL, Stata, MATLAB.",
+        "## Programming and tools",
+        "- Python, C++, SPSS, SQL, Stata, MATLAB",
         "",
         "The PDF preview opens below this text."
       ]),
@@ -134,33 +134,31 @@
     other: {
       title: "module.other",
       code: block([
-        "OTHER",
-        "",
-        "Teaching",
+        "## Teaching",
         "I served as a Teaching Assistant for Intermediate Microeconomics at Columbia University. In this role, I led weekly recitation sessions, held office hours, graded problem sets, and helped prepare review materials. Teaching microeconomics has made me more attentive to the craft of explanation: how abstract models, once carefully unpacked, can become intuitive tools for understanding behavior.",
         "",
-        "Skills and Methods",
+        "## Skills and Methods",
         "My research toolkit includes Python, C++, SPSS, SQL, Stata, and MATLAB. I am especially interested in combining formal economic modeling, experimental design, survey-based measurement, discrete choice methods, and NLP/text-as-data approaches.",
         "",
-        "Beyond Research",
+        "## Beyond Research",
         "Outside academic work, I am drawn to literature, choreography, and movement. I enjoy reading literary and philosophical works, choreographing in styles such as jazz and Afro, and staying active through swimming. These interests reflect a different but related part of my intellectual life: an interest in rhythm, interpretation, structure, and the many ways people move through social worlds.",
         "",
-        "Links",
-        "GitHub: https://github.com/veleskaaar",
-        "LinkedIn: https://www.linkedin.com/in/xi-veleska-chen-226176303/"
+        "## Links",
+        "- GitHub: https://github.com/veleskaaar",
+        "- LinkedIn: https://www.linkedin.com/in/xi-veleska-chen-226176303/"
       ]),
       actions: []
     },
     contact: {
       title: "module.contact",
       code: block([
-        "CONTACT",
+        "## Email",
+        "- Columbia: xc2826@columbia.edu",
+        "- Outlook: veleskaaar@outlook.com",
         "",
-        "Columbia: xc2826@columbia.edu",
-        "Outlook: veleskaaar@outlook.com",
-        "",
-        "GitHub: https://github.com/veleskaaar",
-        "LinkedIn: https://www.linkedin.com/in/xi-veleska-chen-226176303/",
+        "## Links",
+        "- GitHub: https://github.com/veleskaaar",
+        "- LinkedIn: https://www.linkedin.com/in/xi-veleska-chen-226176303/",
         "",
         "Use the message box below to draft an email to my Outlook address, with my Columbia email copied."
       ]),
@@ -216,14 +214,14 @@
 
   function glitterColor(red, green, blue, brightness, saturation) {
     var palettes = [
-      { r: 114, g: 220, b: 255 },
-      { r: 255, g: 128, b: 221 },
-      { r: 255, g: 217, b: 92 },
-      { r: 180, g: 164, b: 255 },
-      { r: 250, g: 252, b: 255 }
+      { r: 138, g: 226, b: 255 },
+      { r: 255, g: 158, b: 222 },
+      { r: 255, g: 214, b: 120 },
+      { r: 202, g: 238, b: 255 },
+      { r: 248, g: 252, b: 255 }
     ];
     var roll = Math.random();
-    var colorIndex = roll < 0.44 ? 0 : roll < 0.76 ? 1 : roll < 0.91 ? 2 : 3;
+    var colorIndex = roll < 0.42 ? 0 : roll < 0.68 ? 1 : roll < 0.9 ? 2 : 3;
 
     if (brightness > 236 && saturation < 0.12 && Math.random() < 0.18) {
       colorIndex = 4;
@@ -243,134 +241,154 @@
     bgPoints = [];
     bgRibbons = [];
 
-    if (!bgReady || !bgImage.naturalWidth || !rect.width || !rect.height) return;
+    if (!rect.width || !rect.height) return;
 
-    bgOffscreen.width = Math.max(1, Math.floor(rect.width));
-    bgOffscreen.height = Math.max(1, Math.floor(rect.height));
-    bgOffCtx.clearRect(0, 0, bgOffscreen.width, bgOffscreen.height);
-    bgOffCtx.fillStyle = "#000000";
-    bgOffCtx.fillRect(0, 0, bgOffscreen.width, bgOffscreen.height);
+    if (bgReady && bgImage.naturalWidth) {
+      bgOffscreen.width = Math.max(1, Math.floor(rect.width));
+      bgOffscreen.height = Math.max(1, Math.floor(rect.height));
+      bgOffCtx.clearRect(0, 0, bgOffscreen.width, bgOffscreen.height);
+      bgOffCtx.fillStyle = "#000000";
+      bgOffCtx.fillRect(0, 0, bgOffscreen.width, bgOffscreen.height);
 
-    var cover = coverImageRect(
-      bgOffscreen.width,
-      bgOffscreen.height,
-      bgImage.naturalWidth,
-      bgImage.naturalHeight
-    );
+      var cover = coverImageRect(
+        bgOffscreen.width,
+        bgOffscreen.height,
+        bgImage.naturalWidth,
+        bgImage.naturalHeight
+      );
 
-    bgOffCtx.save();
-    bgOffCtx.filter = "saturate(1.7) contrast(1.26) brightness(1.34)";
-    bgOffCtx.drawImage(bgImage, cover.x, cover.y, cover.width, cover.height);
-    bgOffCtx.restore();
+      bgOffCtx.save();
+      bgOffCtx.filter = "saturate(1.55) contrast(1.22) brightness(1.18)";
+      bgOffCtx.drawImage(bgImage, cover.x, cover.y, cover.width, cover.height);
+      bgOffCtx.restore();
 
-    var pixels = bgOffCtx.getImageData(0, 0, bgOffscreen.width, bgOffscreen.height).data;
-    var gap = rect.width < 560 ? 5 : 4;
-    var maxParticles = rect.width < 560 ? 5600 : 10800;
+      var pixels = bgOffCtx.getImageData(0, 0, bgOffscreen.width, bgOffscreen.height).data;
+      var sampleGap = rect.width < 560 ? 4 : 3;
+      var maxSampled = rect.width < 560 ? 9200 : 17800;
 
-    for (var y = 0; y < bgOffscreen.height; y += gap) {
-      for (var x = 0; x < bgOffscreen.width; x += gap) {
-        var index = (y * bgOffscreen.width + x) * 4;
-        var red = pixels[index];
-        var green = pixels[index + 1];
-        var blue = pixels[index + 2];
-        var high = Math.max(red, green, blue);
-        var low = Math.min(red, green, blue);
-        var brightness = (red + green + blue) / 3;
-        var saturation = (high - low) / 255;
-        var chance = clamp((brightness - 8) / 255 * 0.72 + saturation * 0.64, 0.06, 0.92);
+      for (var sy = 0; sy < bgOffscreen.height; sy += sampleGap) {
+        for (var sx = 0; sx < bgOffscreen.width; sx += sampleGap) {
+          var index = (sy * bgOffscreen.width + sx) * 4;
+          var red = pixels[index];
+          var green = pixels[index + 1];
+          var blue = pixels[index + 2];
+          var high = Math.max(red, green, blue);
+          var low = Math.min(red, green, blue);
+          var brightness = (red + green + blue) / 3;
+          var saturation = (high - low) / 255;
+          var chance = clamp((brightness - 14) / 255 * 0.78 + saturation * 0.62, 0.015, 0.84);
 
-        if (Math.random() > chance) continue;
+          if (Math.random() > chance) continue;
 
-        var color = glitterColor(red, green, blue, brightness, saturation);
+          var mapped = glitterColor(red, green, blue, brightness, saturation);
+          var bright = brightness > 178 || Math.random() < saturation * 0.42;
+          bgPoints.push({
+            x: sx + (Math.random() - 0.5) * sampleGap * 1.8,
+            y: sy + (Math.random() - 0.5) * sampleGap * 1.8,
+            r: mapped.r,
+            g: mapped.g,
+            b: mapped.b,
+            alpha: clamp(brightness / 255 * 0.9 + saturation * 0.5, 0.2, 1),
+            size: bright ? Math.random() * 1.45 + 0.82 : Math.random() * 0.78 + 0.34,
+            phase: Math.random() * Math.PI * 2,
+            speed: Math.random() * 0.00036 + 0.00012,
+            drift: Math.random() * 1.45 + 0.18,
+            metallic: bright && Math.random() < 0.46
+          });
+        }
+      }
+
+      var ambientCount = rect.width < 560 ? 2200 : 4200;
+      var ambientPalette = [
+        { r: 136, g: 226, b: 255 },
+        { r: 255, g: 160, b: 220 },
+        { r: 255, g: 215, b: 122 },
+        { r: 235, g: 248, b: 255 }
+      ];
+      for (var a = 0; a < ambientCount; a += 1) {
+        var ambient = ambientPalette[Math.floor(Math.random() * ambientPalette.length)];
+        var near = Math.random() < 0.45;
+        var t = Math.random();
         bgPoints.push({
-          x: x + (Math.random() - 0.5) * gap,
-          y: y + (Math.random() - 0.5) * gap,
-          r: color.r,
-          g: color.g,
-          b: color.b,
-          alpha: clamp(0.38 + brightness / 255 * 0.78 + saturation * 0.28, 0.32, 1),
-          size: Math.random() < 0.14 ? Math.random() * 2.7 + 1.35 : Math.random() * 1.25 + 0.65,
+          x: near ? rect.width * (0.12 + t * 0.86) + (Math.random() - 0.5) * rect.width * 0.18 : Math.random() * rect.width,
+          y: near ? rect.height * (0.95 - t * 1.02) + Math.sin(t * 7) * rect.height * 0.07 + (Math.random() - 0.5) * rect.height * 0.16 : Math.random() * rect.height,
+          r: ambient.r,
+          g: ambient.g,
+          b: ambient.b,
+          alpha: Math.random() * 0.5 + 0.2,
+          size: Math.random() < 0.2 ? Math.random() * 1.8 + 0.82 : Math.random() * 0.72 + 0.34,
           phase: Math.random() * Math.PI * 2,
-          speed: Math.random() * 0.00078 + 0.00034,
-          drift: Math.random() * 2.6 + 0.45,
+          speed: Math.random() * 0.00032 + 0.00012,
+          drift: Math.random() * 1.3 + 0.18,
           metallic: Math.random() < 0.18
         });
       }
+
+      while (bgPoints.length > maxSampled) {
+        bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
+      }
+
+      buildGalaxyRibbons(rect);
+      return;
     }
 
-    while (bgPoints.length > maxParticles) {
-      bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
-    }
+    var palette = [
+      { r: 156, g: 226, b: 255 },
+      { r: 200, g: 239, b: 255 },
+      { r: 255, g: 174, b: 222 },
+      { r: 255, g: 213, b: 132 },
+      { r: 246, g: 250, b: 255 }
+    ];
 
-    var ambientCount = Math.floor(maxParticles * 0.32);
-    for (var i = 0; i < ambientCount; i += 1) {
-      var ambient = [
-        { r: 116, g: 219, b: 255 },
-        { r: 255, g: 136, b: 220 },
-        { r: 255, g: 220, b: 98 },
-        { r: 190, g: 170, b: 255 }
-      ][Math.floor(Math.random() * 4)];
-      bgPoints.push({
-        x: Math.random() * rect.width,
-        y: Math.random() * rect.height,
-        r: ambient.r,
-        g: ambient.g,
-        b: ambient.b,
-        alpha: Math.random() * 0.34 + 0.16,
-        size: Math.random() * 1.35 + 0.5,
-        phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.00055 + 0.00025,
-        drift: Math.random() * 3.2 + 0.5,
-        metallic: Math.random() < 0.12
-      });
-    }
+    var count = rect.width < 560 ? 4300 : 8200;
+    var streamCount = rect.width < 560 ? 3000 : 6200;
+    for (var i = 0; i < count; i += 1) {
+      var color = palette[Math.floor(Math.random() * palette.length)];
+      var nearStream = Math.random() < 0.38;
+      var t = Math.random();
+      var curve = Math.sin(t * Math.PI * 2.2) * 0.08 + Math.cos(t * Math.PI * 4.6) * 0.035;
+      var x = nearStream
+        ? rect.width * (0.14 + t * 0.82 + curve) + (Math.random() - 0.5) * rect.width * 0.24
+        : Math.random() * rect.width;
+      var y = nearStream
+        ? rect.height * (0.92 - t * 0.98 + Math.sin(t * 8.2) * 0.055) + (Math.random() - 0.5) * rect.height * 0.18
+        : Math.random() * rect.height;
+      var isBright = Math.random() < (nearStream ? 0.3 : 0.1);
 
-    var galaxyCount = rect.width < 560 ? 2800 : 5600;
-    var centerX = rect.width * 0.52;
-    var centerY = rect.height * 0.45;
-    var radiusX = rect.width * 0.72;
-    var radiusY = rect.height * 0.42;
-    var tilt = -0.18;
-    var cosTilt = Math.cos(tilt);
-    var sinTilt = Math.sin(tilt);
-
-    for (var g = 0; g < galaxyCount; g += 1) {
-      var radius = Math.pow(Math.random(), 0.55);
-      var arm = Math.floor(Math.random() * 4);
-      var theta = arm * Math.PI * 0.5 + radius * 4.2 + (Math.random() - 0.5) * (0.72 - radius * 0.34);
-      var scatter = (1 - radius) * 0.18 + 0.035;
-      var localX = Math.cos(theta) * radiusX * radius + (Math.random() - 0.5) * rect.width * scatter;
-      var localY = Math.sin(theta) * radiusY * radius + (Math.random() - 0.5) * rect.height * scatter;
-      var x = centerX + localX * cosTilt - localY * sinTilt;
-      var y = centerY + localX * sinTilt + localY * cosTilt;
-
-      if (x < -40 || x > rect.width + 40 || y < -40 || y > rect.height + 40) continue;
-
-      var streamColor = [
-        { r: 92, g: 210, b: 255 },
-        { r: 255, g: 123, b: 218 },
-        { r: 255, g: 217, b: 86 },
-        { r: 236, g: 240, b: 255 }
-      ][Math.floor(Math.random() * 4)];
-      var coreBoost = 1 - radius;
       bgPoints.push({
         x: x,
         y: y,
-        r: streamColor.r,
-        g: streamColor.g,
-        b: streamColor.b,
-        alpha: clamp(0.28 + coreBoost * 0.54 + Math.random() * 0.3, 0.24, 0.98),
-        size: Math.random() < 0.2 ? Math.random() * 2.6 + 1.2 : Math.random() * 1.28 + 0.58,
+        r: color.r,
+        g: color.g,
+        b: color.b,
+        alpha: nearStream ? Math.random() * 0.5 + 0.22 : Math.random() * 0.3 + 0.12,
+        size: isBright ? Math.random() * 1.35 + 0.8 : Math.random() * 0.68 + 0.34,
         phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.0007 + 0.00025,
-        drift: Math.random() * 2.4 + 0.5,
-        metallic: Math.random() < 0.28
+        speed: Math.random() * 0.00036 + 0.00012,
+        drift: Math.random() * 1.35 + 0.2,
+        metallic: isBright
       });
     }
 
-    var totalMax = rect.width < 560 ? 9800 : 18000;
-    while (bgPoints.length > totalMax) {
-      bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
+    for (var s = 0; s < streamCount; s += 1) {
+      var u = Math.random();
+      var streamColor = palette[Math.floor(Math.random() * palette.length)];
+      var streamCurve = Math.sin(u * Math.PI * 2.4) * 0.09 + Math.cos(u * Math.PI * 5.2) * 0.032;
+      var streamX = rect.width * (0.1 + u * 0.86 + streamCurve) + (Math.random() - 0.5) * rect.width * 0.11;
+      var streamY = rect.height * (0.98 - u * 1.04 + Math.sin(u * 7.4) * 0.06) + (Math.random() - 0.5) * rect.height * 0.11;
+      bgPoints.push({
+        x: streamX,
+        y: streamY,
+        r: streamColor.r,
+        g: streamColor.g,
+        b: streamColor.b,
+        alpha: Math.random() * 0.56 + 0.22,
+        size: Math.random() < 0.18 ? Math.random() * 1.65 + 0.86 : Math.random() * 0.66 + 0.34,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.00034 + 0.00016,
+        drift: Math.random() * 1.18 + 0.22,
+        metallic: Math.random() < 0.3
+      });
     }
 
     buildGalaxyRibbons(rect);
@@ -378,26 +396,24 @@
 
   function buildGalaxyRibbons(rect) {
     var ribbonColors = [
-      { r: 98, g: 197, b: 255, glow: "rgba(98, 197, 255, 0.86)" },
-      { r: 255, g: 219, b: 112, glow: "rgba(255, 219, 112, 0.84)" },
-      { r: 137, g: 244, b: 224, glow: "rgba(137, 244, 224, 0.7)" },
-      { r: 255, g: 156, b: 219, glow: "rgba(255, 156, 219, 0.68)" },
-      { r: 234, g: 241, b: 255, glow: "rgba(234, 241, 255, 0.84)" }
+      { r: 160, g: 226, b: 255, glow: "rgba(160, 226, 255, 0.72)" },
+      { r: 255, g: 203, b: 232, glow: "rgba(255, 203, 232, 0.56)" },
+      { r: 255, g: 224, b: 140, glow: "rgba(255, 224, 140, 0.58)" },
+      { r: 232, g: 246, b: 255, glow: "rgba(232, 246, 255, 0.72)" }
     ];
 
-    var ribbonCount = rect.width < 560 ? 6 : 10;
+    var ribbonCount = rect.width < 560 ? 5 : 8;
     for (var i = 0; i < ribbonCount; i += 1) {
       var color = ribbonColors[i % ribbonColors.length];
       var points = [];
-      var offset = (i - ribbonCount / 2) * rect.height * 0.018;
+      var offset = (i - ribbonCount / 2) * rect.width * 0.018;
       var phase = Math.random() * Math.PI * 2;
-      var amplitude = rect.height * (0.035 + Math.random() * 0.042);
-      var lift = rect.height * (0.08 + Math.random() * 0.18);
+      var amplitude = rect.width * (0.035 + Math.random() * 0.055);
 
-      for (var step = 0; step <= 11; step += 1) {
-        var t = step / 11;
-        var x = -rect.width * 0.22 + t * rect.width * 1.48 + Math.sin(t * 7 + phase) * rect.width * 0.042;
-        var y = rect.height * (0.74 - t * 0.54) + offset - lift + Math.sin(t * 8.5 + phase) * amplitude;
+      for (var step = 0; step <= 12; step += 1) {
+        var t = step / 12;
+        var x = rect.width * (0.1 + t * 0.86) + offset + Math.sin(t * 7.4 + phase) * amplitude;
+        var y = rect.height * (0.99 - t * 1.07) + Math.cos(t * 6.2 + phase) * rect.height * 0.065;
         points.push({ x: x, y: y });
       }
 
@@ -407,11 +423,11 @@
         g: color.g,
         b: color.b,
         glow: color.glow,
-        alpha: 0.035 + Math.random() * 0.085,
-        width: rect.width * (0.004 + Math.random() * 0.008),
+        alpha: 0.065 + Math.random() * 0.065,
+        width: 0.75 + Math.random() * (rect.width < 560 ? 1.4 : 2.1),
         phase: phase,
-        speed: 0.00014 + Math.random() * 0.00016,
-        shimmer: 0.16 + Math.random() * 0.18
+        speed: 0.00011 + Math.random() * 0.00012,
+        shimmer: 0.1 + Math.random() * 0.16
       });
     }
   }
@@ -483,7 +499,7 @@
     offscreen.width = Math.floor(rect.width);
     offscreen.height = Math.floor(rect.height);
 
-    var fontSize = clamp(Math.min(rect.width * 0.15, rect.height * 0.74), 54, 150);
+    var fontSize = clamp(Math.min(rect.width * 0.2, rect.height * 0.78), 66, 164);
     offCtx.textAlign = "center";
     offCtx.textBaseline = "middle";
     offCtx.font = "800 " + fontSize + "px \"SFMono-Regular\", \"JetBrains Mono\", \"IBM Plex Mono\", \"Fira Code\", \"Cascadia Code\", Menlo, Monaco, Consolas, monospace";
@@ -498,18 +514,18 @@
     offCtx.fillText(text, rect.width / 2, rect.height / 2 + fontSize * 0.02);
 
     var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-    var gap = rect.width < 620 ? 4 : 3;
+    var gap = 2;
     var targets = [];
     for (var y = 0; y < offscreen.height; y += gap) {
       for (var x = 0; x < offscreen.width; x += gap) {
         var alpha = pixels[(y * offscreen.width + x) * 4 + 3];
-        if (alpha > 120 && Math.random() > 0.14) {
+        if (alpha > 110 && Math.random() > 0.2) {
           targets.push({ x: x, y: y });
         }
       }
     }
 
-    var maxParticles = rect.width < 620 ? 2200 : 5000;
+    var maxParticles = rect.width < 620 ? 4600 : 9800;
     while (targets.length > maxParticles) {
       targets.splice(Math.floor(Math.random() * targets.length), 1);
     }
@@ -523,7 +539,7 @@
         ty: target.y,
         vx: existing ? existing.vx : 0,
         vy: existing ? existing.vy : 0,
-        size: Math.random() * 1.55 + 1.0,
+        size: Math.random() * 0.52 + 0.68,
         shimmer: Math.random() * Math.PI * 2
       };
     });
@@ -553,11 +569,13 @@
     offscreen.width = Math.floor(rect.width);
     offscreen.height = Math.floor(rect.height);
 
-    var scale = Math.max(rect.width / portraitImage.naturalWidth, rect.height / portraitImage.naturalHeight);
+    var scale = Math.min(rect.width / portraitImage.naturalWidth, rect.height / portraitImage.naturalHeight) * 1.16;
     var drawWidth = portraitImage.naturalWidth * scale;
     var drawHeight = portraitImage.naturalHeight * scale;
     var drawX = (rect.width - drawWidth) / 2;
-    var drawY = drawHeight > rect.height ? 0 : (rect.height - drawHeight) / 2;
+    var drawY = drawHeight > rect.height
+      ? Math.max((rect.height - drawHeight) * 0.28, -rect.height * 0.08)
+      : (rect.height - drawHeight) / 2;
     portraitDraw = { x: drawX, y: drawY, width: drawWidth, height: drawHeight };
 
     offCtx.fillStyle = "#000000";
@@ -565,14 +583,14 @@
     offCtx.drawImage(portraitImage, drawX, drawY, drawWidth, drawHeight);
 
     var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-    var gap = 3;
+    var gap = 2;
     var targets = [];
 
     for (var y = 0; y < offscreen.height; y += gap) {
       for (var x = 0; x < offscreen.width; x += gap) {
         var index = (y * offscreen.width + x) * 4;
         var brightness = (pixels[index] + pixels[index + 1] + pixels[index + 2]) / 3;
-        if (brightness > 28 && Math.random() < 0.94) {
+        if (brightness > 24 && Math.random() < 0.96) {
           targets.push({
             x: x,
             y: y,
@@ -582,7 +600,7 @@
       }
     }
 
-    var maxParticles = rect.width < 420 ? 6200 : 12400;
+    var maxParticles = rect.width < 420 ? 9800 : 22000;
     while (targets.length > maxParticles) {
       targets.splice(Math.floor(Math.random() * targets.length), 1);
     }
@@ -596,8 +614,8 @@
         ty: target.y,
         vx: existing ? existing.vx : 0,
         vy: existing ? existing.vy : 0,
-        size: Math.random() * 1.35 + target.tone * 2.35,
-        alpha: clamp(target.tone * 1.18, 0.4, 1),
+        size: Math.random() * 0.56 + target.tone * 1.1,
+        alpha: clamp(target.tone * 1.28, 0.48, 1),
         shimmer: Math.random() * Math.PI * 2
       };
     });
@@ -606,7 +624,12 @@
   function drawBackground(time) {
     var rect = bgCanvas.getBoundingClientRect();
     bgCtx.clearRect(0, 0, rect.width, rect.height);
-    bgCtx.fillStyle = "#000000";
+    var base = bgCtx.createLinearGradient(0, 0, rect.width, rect.height);
+    base.addColorStop(0, "#02040a");
+    base.addColorStop(0.42, "#030816");
+    base.addColorStop(0.72, "#00030a");
+    base.addColorStop(1, "#000000");
+    bgCtx.fillStyle = base;
     bgCtx.fillRect(0, 0, rect.width, rect.height);
 
     if (!bgPoints.length && !bgRibbons.length) return;
@@ -622,13 +645,13 @@
       var driftY = Math.cos(time * p.speed * 0.72 + p.phase) * p.drift * 0.55;
       var pulse = 0.66 + Math.sin(time * 0.0012 + p.phase) * 0.28;
       var alpha = clamp(p.alpha * pulse, 0.04, 0.92);
-      var focusX = (p.x - rect.width * 0.5) / (rect.width * 0.33);
-      var focusY = (p.y - rect.height * 0.48) / (rect.height * 0.39);
+      var focusX = (p.x - rect.width * 0.5) / (rect.width * 0.29);
+      var focusY = (p.y - rect.height * 0.43) / (rect.height * 0.34);
       var focusDistance = focusX * focusX + focusY * focusY;
-      var focusDamp = 1 - clamp(1.12 - focusDistance, 0, 1) * 0.42;
+      var focusDamp = 1 - clamp(1.14 - focusDistance, 0, 1) * 0.58;
       var titleBand = p.y > rect.height * 0.58 && p.y < rect.height * 0.82 && Math.abs(p.x - rect.width * 0.5) < rect.width * 0.45;
       if (titleBand) {
-        focusDamp *= 0.36;
+        focusDamp *= 0.28;
       }
       alpha *= focusDamp;
 
@@ -649,16 +672,73 @@
     ctx.save();
     ctx.globalCompositeOperation = "screen";
 
+    var wash = ctx.createLinearGradient(rect.width * 0.78, 0, rect.width * 0.12, rect.height);
+    wash.addColorStop(0, "rgba(132, 224, 255, 0.13)");
+    wash.addColorStop(0.36, "rgba(255, 166, 222, 0.11)");
+    wash.addColorStop(0.64, "rgba(255, 214, 126, 0.115)");
+    wash.addColorStop(1, "rgba(116, 234, 222, 0.09)");
+    ctx.fillStyle = wash;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+
+    ctx.save();
+    ctx.filter = "blur(22px)";
+    var upperGlow = ctx.createRadialGradient(rect.width * 0.78, rect.height * 0.08, 0, rect.width * 0.78, rect.height * 0.08, rect.width * 0.5);
+    upperGlow.addColorStop(0, "rgba(143, 222, 255, 0.28)");
+    upperGlow.addColorStop(0.36, "rgba(255, 210, 145, 0.16)");
+    upperGlow.addColorStop(0.58, "rgba(255, 158, 222, 0.08)");
+    upperGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = upperGlow;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+
+    var lowerGlow = ctx.createRadialGradient(rect.width * 0.18, rect.height * 0.9, 0, rect.width * 0.18, rect.height * 0.9, rect.width * 0.5);
+    lowerGlow.addColorStop(0, "rgba(115, 236, 230, 0.2)");
+    lowerGlow.addColorStop(0.46, "rgba(255, 160, 222, 0.12)");
+    lowerGlow.addColorStop(0.7, "rgba(255, 210, 120, 0.08)");
+    lowerGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = lowerGlow;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    ctx.filter = "blur(10px)";
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    var flowGradient = ctx.createLinearGradient(0, rect.height, rect.width, 0);
+    flowGradient.addColorStop(0, "rgba(118, 235, 246, 0.18)");
+    flowGradient.addColorStop(0.28, "rgba(255, 152, 220, 0.16)");
+    flowGradient.addColorStop(0.54, "rgba(162, 226, 255, 0.22)");
+    flowGradient.addColorStop(0.76, "rgba(255, 207, 108, 0.22)");
+    flowGradient.addColorStop(1, "rgba(174, 235, 255, 0.16)");
+    ctx.strokeStyle = flowGradient;
+    ctx.shadowColor = "rgba(169, 226, 255, 0.32)";
+    ctx.shadowBlur = rect.width < 560 ? 18 : 30;
+    ctx.lineWidth = rect.width < 560 ? 20 : 40;
+    ctx.beginPath();
+    ctx.moveTo(-rect.width * 0.18, rect.height * 0.96);
+    ctx.bezierCurveTo(rect.width * 0.18, rect.height * 0.7, rect.width * 0.32, rect.height * 0.33, rect.width * 0.66, rect.height * 0.2);
+    ctx.bezierCurveTo(rect.width * 0.86, rect.height * 0.12, rect.width * 1.02, rect.height * 0.02, rect.width * 1.18, -rect.height * 0.12);
+    ctx.stroke();
+
+    ctx.lineWidth = rect.width < 560 ? 11 : 22;
+    ctx.strokeStyle = "rgba(255, 184, 220, 0.13)";
+    ctx.beginPath();
+    ctx.moveTo(-rect.width * 0.08, rect.height * 0.82);
+    ctx.bezierCurveTo(rect.width * 0.18, rect.height * 0.66, rect.width * 0.46, rect.height * 0.56, rect.width * 0.7, rect.height * 0.3);
+    ctx.bezierCurveTo(rect.width * 0.88, rect.height * 0.1, rect.width * 1.03, rect.height * 0.06, rect.width * 1.1, -rect.height * 0.04);
+    ctx.stroke();
+    ctx.restore();
+
     for (var i = 0; i < bgRibbons.length; i += 1) {
       var ribbon = bgRibbons[i];
       var wave = Math.sin(time * ribbon.speed + ribbon.phase) * ribbon.shimmer;
-      var alpha = clamp(ribbon.alpha + wave, 0.05, 0.36);
+      var alpha = clamp(ribbon.alpha + wave * 0.35, 0.035, 0.18);
 
       ctx.save();
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.shadowColor = ribbon.glow;
-      ctx.shadowBlur = rect.width < 560 ? 14 : 26;
+      ctx.shadowBlur = rect.width < 560 ? 10 : 18;
 
       ctx.beginPath();
       for (var p = 0; p < ribbon.points.length; p += 1) {
@@ -681,12 +761,12 @@
       wideGradient.addColorStop(0.72, "rgba(255, 220, 120, " + alpha * 0.76 + ")");
       wideGradient.addColorStop(1, "rgba(242, 247, 255, " + alpha * 0.46 + ")");
       ctx.strokeStyle = wideGradient;
-      ctx.lineWidth = ribbon.width * 1.8;
+      ctx.lineWidth = ribbon.width;
       ctx.stroke();
 
-      ctx.shadowBlur = rect.width < 560 ? 7 : 14;
-      ctx.strokeStyle = "rgba(248, 250, 255, " + clamp(alpha * 1.85, 0.08, 0.28) + ")";
-      ctx.lineWidth = Math.max(1, ribbon.width * 0.22);
+      ctx.shadowBlur = rect.width < 560 ? 5 : 9;
+      ctx.strokeStyle = "rgba(248, 250, 255, " + clamp(alpha * 1.15, 0.045, 0.16) + ")";
+      ctx.lineWidth = Math.max(0.7, ribbon.width * 0.42);
       ctx.stroke();
       ctx.restore();
     }
@@ -694,10 +774,10 @@
     ctx.save();
     ctx.globalCompositeOperation = "destination-out";
     ctx.translate(rect.width * 0.5, rect.height * 0.43);
-    ctx.scale(1.15, 0.78);
-    var portraitFade = ctx.createRadialGradient(0, 0, 0, 0, 0, rect.height * 0.34);
-    portraitFade.addColorStop(0, "rgba(0, 0, 0, 0.58)");
-    portraitFade.addColorStop(0.58, "rgba(0, 0, 0, 0.24)");
+    ctx.scale(1.02, 0.8);
+    var portraitFade = ctx.createRadialGradient(0, 0, 0, 0, 0, rect.height * 0.36);
+    portraitFade.addColorStop(0, "rgba(0, 0, 0, 0.64)");
+    portraitFade.addColorStop(0.62, "rgba(0, 0, 0, 0.28)");
     portraitFade.addColorStop(1, "rgba(0, 0, 0, 0)");
     ctx.fillStyle = portraitFade;
     ctx.fillRect(-rect.width, -rect.height, rect.width * 2, rect.height * 2);
@@ -707,8 +787,8 @@
     ctx.globalCompositeOperation = "destination-out";
     var titleFade = ctx.createLinearGradient(0, rect.height * 0.55, 0, rect.height * 0.86);
     titleFade.addColorStop(0, "rgba(0, 0, 0, 0)");
-    titleFade.addColorStop(0.36, "rgba(0, 0, 0, 0.42)");
-    titleFade.addColorStop(0.82, "rgba(0, 0, 0, 0.5)");
+    titleFade.addColorStop(0.34, "rgba(0, 0, 0, 0.38)");
+    titleFade.addColorStop(0.82, "rgba(0, 0, 0, 0.46)");
     titleFade.addColorStop(1, "rgba(0, 0, 0, 0)");
     ctx.fillStyle = titleFade;
     ctx.fillRect(rect.width * 0.05, rect.height * 0.55, rect.width * 0.9, rect.height * 0.32);
@@ -746,10 +826,10 @@
       p.x += p.vx;
       p.y += p.vy;
 
-      var shimmer = 0.84 + Math.sin(time * 0.0011 + p.shimmer) * 0.18;
-      var alpha = clamp(shimmer, 0.68, 1);
-      titleCtx.fillStyle = "rgba(248, 249, 244, " + alpha + ")";
-      titleCtx.fillRect(p.x, p.y, p.size * 1.22, p.size * 1.22);
+      var shimmer = 0.92 + Math.sin(time * 0.001 + p.shimmer) * 0.08;
+      var alpha = clamp(shimmer, 0.78, 1);
+      titleCtx.fillStyle = "rgba(252, 253, 249, " + alpha + ")";
+      titleCtx.fillRect(p.x, p.y, p.size, p.size);
     }
 
     drawSparkles(titleCtx, titleSparkles);
@@ -766,8 +846,8 @@
     if (portraitDraw) {
       portraitCtx.save();
       portraitCtx.globalCompositeOperation = "screen";
-      portraitCtx.globalAlpha = 0.2;
-      portraitCtx.filter = "grayscale(1) contrast(1.28) brightness(1.08)";
+      portraitCtx.globalAlpha = 0.18;
+      portraitCtx.filter = "grayscale(1) contrast(1.35) brightness(1.12)";
       portraitCtx.drawImage(
         portraitImage,
         portraitDraw.x,
@@ -804,9 +884,9 @@
       p.x += p.vx;
       p.y += p.vy;
 
-      var shimmer = 0.9 + Math.sin(time * 0.0009 + p.shimmer) * 0.12;
-      var alpha = clamp(p.alpha * shimmer, 0.46, 1);
-      portraitCtx.fillStyle = "rgba(250, 250, 244, " + alpha + ")";
+      var shimmer = 0.92 + Math.sin(time * 0.00082 + p.shimmer) * 0.1;
+      var alpha = clamp(p.alpha * shimmer, 0.6, 1);
+      portraitCtx.fillStyle = "rgba(252, 253, 249, " + alpha + ")";
       portraitCtx.fillRect(p.x, p.y, p.size, p.size);
     }
 
@@ -948,23 +1028,43 @@
     }
   }
 
-  function typeCode(text) {
-    if (typingTimer) window.clearInterval(typingTimer);
-    if (prefersReducedMotion || text.length > 700) {
-      codeOutput.textContent = text;
-      return;
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function terminalLine(line) {
+    if (!line) {
+      return "<span class=\"quiet-code__line quiet-code__line--spacer\"></span>";
     }
 
-    codeOutput.textContent = "";
-    var index = 0;
-    typingTimer = window.setInterval(function () {
-      codeOutput.textContent += text.slice(index, index + 3);
-      index += 3;
-      if (index >= text.length) {
-        window.clearInterval(typingTimer);
-        typingTimer = null;
-      }
-    }, 9);
+    var className = "quiet-code__line--text";
+    var text = line;
+    if (line.indexOf("$ ") === 0) {
+      className = "quiet-code__line--command";
+    } else if (line.indexOf("## ") === 0) {
+      className = "quiet-code__line--heading";
+      text = line.slice(3);
+    } else if (line.indexOf("> ") === 0) {
+      className = "quiet-code__line--meta";
+      text = line.slice(2);
+    } else if (line.indexOf("- ") === 0) {
+      className = "quiet-code__line--bullet";
+    }
+
+    return "<span class=\"quiet-code__line " + className + "\">" + escapeHtml(text) + "</span>";
+  }
+
+  function renderTerminal(text) {
+    codeOutput.innerHTML = text.split("\n").map(terminalLine).join("");
+  }
+
+  function typeCode(text) {
+    if (typingTimer) window.clearInterval(typingTimer);
+    typingTimer = null;
+    renderTerminal(text);
   }
 
   function renderActions(actions) {
