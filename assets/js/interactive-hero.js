@@ -6,6 +6,8 @@
   var bgCanvas = hero.querySelector("[data-hero-background]");
   var titleCanvas = hero.querySelector("[data-hero-title]");
   var titleField = hero.querySelector("[data-hero-title-field]");
+  var portraitCanvas = hero.querySelector("[data-hero-portrait]");
+  var portraitField = hero.querySelector("[data-hero-portrait-field]");
   var codePanel = home.querySelector("[data-code-panel]");
   var codeOutput = home.querySelector("[data-code-output]");
   var codeTitle = home.querySelector("#quiet-code-title");
@@ -16,13 +18,19 @@
   var revealSection = home.querySelector("[data-reveal-section]");
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var pointer = { x: 0, y: 0, active: false, lastMove: 0 };
+  var portraitPointer = { x: 0, y: 0, active: false, lastMove: 0 };
   var profileDismissed = false;
   var columbiaEmail = "xc2826@columbia.edu";
   var zhimiaoEmail = "zhimiao-email@example.com";
   var titleParticles = [];
+  var portraitParticles = [];
   var bgPoints = [];
   var bgLines = [];
   var titleCtx = titleCanvas.getContext("2d");
+  var portraitCtx = portraitCanvas ? portraitCanvas.getContext("2d") : null;
+  var portraitImage = new Image();
+  var portraitReady = false;
+  var portraitDraw = null;
   var bgCtx = bgCanvas.getContext("2d");
   var typingTimer = null;
   var audioState = {
@@ -189,7 +197,7 @@
     offscreen.width = Math.floor(rect.width);
     offscreen.height = Math.floor(rect.height);
 
-    var fontSize = clamp(rect.width * 0.2, 86, 210);
+    var fontSize = clamp(Math.min(rect.width * 0.2, rect.height * 0.78), 70, 178);
     offCtx.textAlign = "center";
     offCtx.textBaseline = "middle";
     offCtx.font = "800 " + fontSize + "px \"SFMono-Regular\", \"JetBrains Mono\", \"IBM Plex Mono\", \"Fira Code\", \"Cascadia Code\", Menlo, Monaco, Consolas, monospace";
@@ -230,6 +238,80 @@
         vx: existing ? existing.vx : 0,
         vy: existing ? existing.vy : 0,
         size: Math.random() * 1.5 + 0.7,
+        shimmer: Math.random() * Math.PI * 2
+      };
+    });
+  }
+
+  function loadPortraitImage() {
+    if (!portraitCanvas) return;
+
+    portraitImage.onload = function () {
+      portraitReady = true;
+      buildPortraitParticles();
+    };
+    portraitImage.src = portraitCanvas.getAttribute("data-hero-portrait") || "";
+
+    if (portraitImage.complete && portraitImage.naturalWidth) {
+      portraitReady = true;
+      buildPortraitParticles();
+    }
+  }
+
+  function buildPortraitParticles() {
+    if (!portraitCanvas || !portraitCtx || !portraitReady || !portraitImage.naturalWidth) return;
+
+    var rect = resizeCanvas(portraitCanvas);
+    var offscreen = document.createElement("canvas");
+    var offCtx = offscreen.getContext("2d");
+    offscreen.width = Math.floor(rect.width);
+    offscreen.height = Math.floor(rect.height);
+
+    var scale = Math.max(rect.width / portraitImage.naturalWidth, rect.height / portraitImage.naturalHeight);
+    var drawWidth = portraitImage.naturalWidth * scale;
+    var drawHeight = portraitImage.naturalHeight * scale;
+    var drawX = (rect.width - drawWidth) / 2;
+    var drawY = (rect.height - drawHeight) * 0.35;
+    portraitDraw = { x: drawX, y: drawY, width: drawWidth, height: drawHeight };
+
+    offCtx.fillStyle = "#000000";
+    offCtx.fillRect(0, 0, offscreen.width, offscreen.height);
+    offCtx.drawImage(portraitImage, drawX, drawY, drawWidth, drawHeight);
+
+    var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
+    var gap = rect.width < 420 ? 3 : 4;
+    var targets = [];
+
+    for (var y = 0; y < offscreen.height; y += gap) {
+      for (var x = 0; x < offscreen.width; x += gap) {
+        var index = (y * offscreen.width + x) * 4;
+        var brightness = (pixels[index] + pixels[index + 1] + pixels[index + 2]) / 3;
+        if (brightness > 34 && Math.random() < 0.9) {
+          targets.push({
+            x: x,
+            y: y,
+            tone: clamp(brightness / 255, 0.22, 0.92)
+          });
+        }
+      }
+    }
+
+    var maxParticles = rect.width < 420 ? 5600 : 11800;
+    while (targets.length > maxParticles) {
+      targets.splice(Math.floor(Math.random() * targets.length), 1);
+    }
+
+    portraitParticles = targets.map(function (target, index) {
+      var existing = portraitParticles[index];
+      return {
+        x: existing ? existing.x : target.x + (Math.random() - 0.5) * rect.width,
+        y: existing ? existing.y : target.y + (Math.random() - 0.5) * rect.height,
+        tx: target.x,
+        ty: target.y,
+        vx: existing ? existing.vx : 0,
+        vy: existing ? existing.vy : 0,
+        size: Math.random() * 1.25 + target.tone * 2.1,
+        alpha: target.tone,
         shimmer: Math.random() * Math.PI * 2
       };
     });
@@ -332,8 +414,66 @@
     titleCtx.restore();
   }
 
+  function drawPortrait(time) {
+    if (!portraitCanvas || !portraitCtx) return;
+
+    var rect = portraitCanvas.getBoundingClientRect();
+    portraitCtx.clearRect(0, 0, rect.width, rect.height);
+    if (!portraitReady) return;
+
+    if (portraitDraw) {
+      portraitCtx.save();
+      portraitCtx.globalCompositeOperation = "screen";
+      portraitCtx.globalAlpha = portraitPointer.active ? 0.2 : 0.34;
+      portraitCtx.filter = "contrast(1.18) brightness(1.12)";
+      portraitCtx.drawImage(
+        portraitImage,
+        portraitDraw.x,
+        portraitDraw.y,
+        portraitDraw.width,
+        portraitDraw.height
+      );
+      portraitCtx.restore();
+    }
+
+    portraitCtx.save();
+    portraitCtx.globalCompositeOperation = "lighter";
+
+    for (var i = 0; i < portraitParticles.length; i += 1) {
+      var p = portraitParticles[i];
+      var ax = (p.tx - p.x) * (portraitPointer.active ? 0.011 : 0.023);
+      var ay = (p.ty - p.y) * (portraitPointer.active ? 0.011 : 0.023);
+
+      if (portraitPointer.active && !prefersReducedMotion) {
+        var dx = p.x - portraitPointer.x;
+        var dy = p.y - portraitPointer.y;
+        var distSq = dx * dx + dy * dy;
+        var radius = rect.width < 360 ? 76 : 116;
+        if (distSq < radius * radius) {
+          var dist = Math.sqrt(distSq) || 1;
+          var force = (1 - dist / radius) * 3.2;
+          ax += (dx / dist) * force;
+          ay += (dy / dist) * force;
+        }
+      }
+
+      p.vx = (p.vx + ax) * 0.9;
+      p.vy = (p.vy + ay) * 0.9;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      var shimmer = 0.82 + Math.sin(time * 0.0009 + p.shimmer) * 0.14;
+      var alpha = clamp(p.alpha * shimmer, 0.24, 0.96);
+      portraitCtx.fillStyle = "rgba(238, 244, 236, " + alpha + ")";
+      portraitCtx.fillRect(p.x, p.y, p.size, p.size);
+    }
+
+    portraitCtx.restore();
+  }
+
   function animate(time) {
     drawBackground(time);
+    drawPortrait(time);
     drawTitle(time);
     requestAnimationFrame(animate);
   }
@@ -343,6 +483,14 @@
     pointer.x = event.clientX - rect.left;
     pointer.y = event.clientY - rect.top;
     pointer.lastMove = performance.now();
+  }
+
+  function portraitPointerPosition(event) {
+    var rect = portraitCanvas.getBoundingClientRect();
+    portraitPointer.x = event.clientX - rect.left;
+    portraitPointer.y = event.clientY - rect.top;
+    portraitPointer.lastMove = performance.now();
+    pointer.lastMove = portraitPointer.lastMove;
   }
 
   function setupAudio() {
@@ -562,6 +710,30 @@
       activateAudio();
     });
 
+    if (portraitField && portraitCanvas) {
+      portraitField.addEventListener("pointerenter", function (event) {
+        portraitPointer.active = true;
+        portraitPointerPosition(event);
+        activateAudio();
+      });
+
+      portraitField.addEventListener("pointermove", function (event) {
+        portraitPointer.active = true;
+        portraitPointerPosition(event);
+        activateAudio();
+      });
+
+      portraitField.addEventListener("pointerleave", function () {
+        portraitPointer.active = false;
+        softenAudio();
+      });
+
+      portraitField.addEventListener("pointerdown", function (event) {
+        portraitPointerPosition(event);
+        activateAudio();
+      });
+    }
+
     home.addEventListener("click", function (event) {
       if (event.target.closest("[data-close-profile]")) {
         dismissProfile();
@@ -595,6 +767,7 @@
     window.addEventListener("resize", function () {
       createBackground();
       buildTitleParticles();
+      buildPortraitParticles();
     });
 
     document.addEventListener("visibilitychange", function () {
@@ -625,6 +798,7 @@
 
   createBackground();
   buildTitleParticles();
+  loadPortraitImage();
   bindEvents();
   revealProfile();
   requestAnimationFrame(animate);
