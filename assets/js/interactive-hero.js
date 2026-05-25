@@ -10,9 +10,15 @@
   var codeOutput = home.querySelector("[data-code-output]");
   var codeTitle = home.querySelector("#quiet-code-title");
   var codeActions = home.querySelector("[data-code-actions]");
+  var contactForm = home.querySelector("[data-contact-form]");
+  var contactSubject = home.querySelector("[data-contact-subject]");
+  var contactMessage = home.querySelector("[data-contact-message]");
   var revealSection = home.querySelector("[data-reveal-section]");
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var pointer = { x: 0, y: 0, active: false, lastMove: 0 };
+  var profileDismissed = false;
+  var columbiaEmail = "xc2826@columbia.edu";
+  var zhimiaoEmail = "zhimiao-email@example.com";
   var titleParticles = [];
   var bgPoints = [];
   var bgLines = [];
@@ -112,14 +118,21 @@
       title: "module.contact",
       code:
         "const contact = {\n" +
-        "  email: 'xc2826@columbia.edu',\n" +
+        "  columbia: 'xc2826@columbia.edu',\n" +
+        "  zhimiao: 'zhimiao-email@example.com',\n" +
         "  github: 'https://github.com/veleskaaar',\n" +
         "  linkedin: 'https://www.linkedin.com/in/your-linkedin-profile/',\n" +
-        "  location: 'New York, NY'\n" +
+        "  location: 'New York, NY',\n" +
+        "  note: 'Static-site mail form: opens your email client with a drafted message.'\n" +
         "};\n\n" +
-        "send({ tone: 'quiet', purpose: 'research conversation' });",
+        "send.message({\n" +
+        "  to: contact.zhimiao,\n" +
+        "  cc: contact.columbia,\n" +
+        "  tone: 'quiet',\n" +
+        "  purpose: 'research conversation'\n" +
+        "});",
       actions: [
-        { label: "Email", href: "mailto:xc2826@columbia.edu" },
+        { label: "Email Columbia", href: "mailto:xc2826@columbia.edu" },
         { label: "GitHub", href: "https://github.com/veleskaaar", external: true },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/your-linkedin-profile/", external: true }
       ]
@@ -179,11 +192,11 @@
     var fontSize = clamp(rect.width * 0.2, 86, 210);
     offCtx.textAlign = "center";
     offCtx.textBaseline = "middle";
-    offCtx.font = "600 " + fontSize + "px Georgia, Times New Roman, serif";
+    offCtx.font = "800 " + fontSize + "px \"SFMono-Regular\", \"JetBrains Mono\", \"IBM Plex Mono\", \"Fira Code\", \"Cascadia Code\", Menlo, Monaco, Consolas, monospace";
 
     while (offCtx.measureText(text).width > rect.width * 0.92 && fontSize > 44) {
       fontSize -= 4;
-      offCtx.font = "600 " + fontSize + "px Georgia, Times New Roman, serif";
+      offCtx.font = "800 " + fontSize + "px \"SFMono-Regular\", \"JetBrains Mono\", \"IBM Plex Mono\", \"Fira Code\", \"Cascadia Code\", Menlo, Monaco, Consolas, monospace";
     }
 
     offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
@@ -480,13 +493,50 @@
     codeTitle.textContent = module.title;
     typeCode(module.code);
     renderActions(module.actions || []);
+    codePanel.classList.toggle("is-contact", name === "contact");
     codePanel.classList.add("is-open");
     codePanel.setAttribute("aria-hidden", "false");
   }
 
   function closePanel() {
     codePanel.classList.remove("is-open");
+    codePanel.classList.remove("is-contact");
     codePanel.setAttribute("aria-hidden", "true");
+  }
+
+  function dismissProfile() {
+    if (!revealSection) return;
+    if (!revealSection.classList.contains("is-visible")) return;
+    profileDismissed = true;
+    revealSection.classList.add("is-dismissed");
+    revealSection.classList.remove("is-visible");
+  }
+
+  function resetProfileDismissalNearHero() {
+    if (!revealSection || !profileDismissed) return;
+    if (window.scrollY < window.innerHeight * 0.45) {
+      profileDismissed = false;
+      revealSection.classList.remove("is-dismissed");
+    }
+  }
+
+  function submitContact(event) {
+    event.preventDefault();
+
+    var subject = contactSubject && contactSubject.value.trim()
+      ? contactSubject.value.trim()
+      : "Hello Xi";
+    var message = contactMessage && contactMessage.value.trim()
+      ? contactMessage.value.trim()
+      : "Hi Xi,\n\n";
+
+    var mailto =
+      "mailto:" + zhimiaoEmail +
+      "?cc=" + encodeURIComponent(columbiaEmail) +
+      "&subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(message);
+
+    window.location.href = mailto;
   }
 
   function bindEvents() {
@@ -513,6 +563,11 @@
     });
 
     home.addEventListener("click", function (event) {
+      if (event.target.closest("[data-close-profile]")) {
+        dismissProfile();
+        return;
+      }
+
       var panelButton = event.target.closest("[data-panel]");
       if (panelButton) {
         openPanel(panelButton.getAttribute("data-panel"));
@@ -527,8 +582,15 @@
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         closePanel();
+        dismissProfile();
       }
     });
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", submitContact);
+    }
+
+    window.addEventListener("scroll", resetProfileDismissalNearHero, { passive: true });
 
     window.addEventListener("resize", function () {
       createBackground();
@@ -549,8 +611,11 @@
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !profileDismissed) {
           revealSection.classList.add("is-visible");
+          revealSection.classList.remove("is-dismissed");
+        } else if (!entry.isIntersecting) {
+          revealSection.classList.remove("is-visible");
         }
       });
     }, { threshold: 0.28 });

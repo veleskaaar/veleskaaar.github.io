@@ -10,12 +10,10 @@
       <button class="quiet-home__nav-item" type="button" data-panel="research">Research</button>
       <button class="quiet-home__nav-item" type="button" data-panel="cv">CV</button>
       <button class="quiet-home__nav-item" type="button" data-panel="other">Other</button>
+      <button class="quiet-home__nav-item" type="button" data-panel="contact">Contact</button>
     </nav>
 
-    <button class="quiet-home__contact" type="button" data-panel="contact">
-      <span>Contact</span>
-      <span>xc2826@columbia.edu</span>
-    </button>
+    <div class="quiet-home__mail-tag" aria-hidden="true">mail: xc2826@columbia.edu</div>
 
     <div class="quiet-hero__status quiet-hero__status--tl" aria-hidden="true">
       <span>SIGNAL QUIET</span>
@@ -57,26 +55,35 @@
   </section>
 
   <section id="profile-console" class="quiet-profile" data-reveal-section aria-label="Profile">
+    <div class="quiet-profile__modal-backdrop" data-close-profile></div>
     <div class="quiet-profile__frame">
+      <button class="quiet-profile__close" type="button" data-close-profile aria-label="Close profile">×</button>
       <div class="quiet-profile__image-shell">
-        <img src="{{ base_path }}/images/profile.png" alt="Portrait placeholder for Xi Chen" class="quiet-profile__image">
+        <img src="{{ base_path }}/images/xi-chen-photo.jpg" alt="Portrait of Xi Chen" class="quiet-profile__image quiet-profile__image--clear">
+        <img src="{{ base_path }}/images/xi-chen-terminal.png" alt="" class="quiet-profile__image quiet-profile__image--terminal" aria-hidden="true">
+        <span class="quiet-profile__terminal-label">[hover image: terminal render]</span>
       </div>
       <div class="quiet-profile__copy">
         <p class="quiet-profile__kicker">/profile/init</p>
         <h2>Xi Chen</h2>
         <p>
-          M.A. Economics student at Columbia University. I work across behavioral economics,
-          organizational research, institutional rules, text analysis, and experimental design.
+          M.A. Economics student at Columbia University.
+          I study decisions, institutions, strategic compliance, and organizational narratives.
         </p>
         <p>
-          I am drawn to quiet questions with sharp edges: how people interpret rules, how organizations
-          signal identity, and how uncertainty changes behavior.
+          My work mixes behavioral economics, experimental design, text analysis, and computational social science.
         </p>
-        <div class="quiet-profile__links" aria-label="Profile links">
+        <div class="quiet-profile__dock" aria-label="Profile sections">
+          <button type="button" data-panel="education">Education</button>
+          <button type="button" data-panel="research">Research</button>
+          <button type="button" data-panel="cv">CV</button>
+          <button type="button" data-panel="other">Other</button>
+          <button type="button" data-panel="contact">Contact</button>
+        </div>
+        <div class="quiet-profile__links" aria-label="External links">
           <a href="mailto:xc2826@columbia.edu">Email</a>
           <a href="https://github.com/veleskaaar" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank" rel="noopener">LinkedIn</a>
-          <button type="button" data-panel="contact">Contact</button>
         </div>
       </div>
     </div>
@@ -93,6 +100,21 @@
         <button type="button" data-close-panel aria-label="Close panel">×</button>
       </header>
       <pre class="quiet-code__body"><code data-code-output></code></pre>
+      <form class="quiet-contact-form" data-contact-form>
+        <div class="quiet-contact-form__emails">
+          <span>Columbia: xc2826@columbia.edu</span>
+          <span>Zhimiao: zhimiao-email@example.com</span>
+        </div>
+        <label>
+          <span>subject</span>
+          <input type="text" data-contact-subject value="Hello Xi">
+        </label>
+        <label>
+          <span>message</span>
+          <textarea data-contact-message rows="5" placeholder="Write a short message here..."></textarea>
+        </label>
+        <button type="submit">send.message()</button>
+      </form>
       <div class="quiet-code__actions" data-code-actions></div>
     </section>
   </div>
