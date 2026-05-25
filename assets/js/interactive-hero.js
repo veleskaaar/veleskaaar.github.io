@@ -7,7 +7,6 @@
   var titleCanvas = hero.querySelector("[data-hero-title]");
   var titleField = hero.querySelector("[data-hero-title-field]");
   var portraitCanvas = hero.querySelector("[data-hero-portrait]");
-  var portraitField = hero.querySelector("[data-hero-portrait-field]");
   var codePanel = home.querySelector("[data-code-panel]");
   var codeOutput = home.querySelector("[data-code-output]");
   var codeTitle = home.querySelector("#quiet-code-title");
@@ -23,6 +22,7 @@
   var columbiaEmail = "xc2826@columbia.edu";
   var zhimiaoEmail = "zhimiao-email@example.com";
   var titleParticles = [];
+  var titleSparkles = [];
   var portraitParticles = [];
   var bgPoints = [];
   var bgLines = [];
@@ -139,11 +139,7 @@
         "  tone: 'quiet',\n" +
         "  purpose: 'research conversation'\n" +
         "});",
-      actions: [
-        { label: "Email Columbia", href: "mailto:xc2826@columbia.edu" },
-        { label: "GitHub", href: "https://github.com/veleskaaar", external: true },
-        { label: "LinkedIn", href: "https://www.linkedin.com/in/xi-veleska-chen-226176303/?skipRedirect=true", external: true }
-      ]
+      actions: []
     }
   };
 
@@ -163,28 +159,37 @@
 
   function createBackground() {
     var rect = resizeCanvas(bgCanvas);
-    var count = prefersReducedMotion ? 80 : Math.floor(clamp(rect.width / 6, 120, 240));
+    var count = prefersReducedMotion ? 120 : Math.floor(clamp(rect.width / 4.8, 180, 360));
     bgPoints = [];
     bgLines = [];
 
     for (var i = 0; i < count; i += 1) {
+      var palette = Math.random();
       bgPoints.push({
         x: Math.random() * rect.width,
         y: Math.random() * rect.height,
         z: Math.random() * 0.9 + 0.1,
-        speed: Math.random() * 0.08 + 0.025,
-        phase: Math.random() * Math.PI * 2
+        speed: Math.random() * 0.018 + 0.004,
+        phase: Math.random() * Math.PI * 2,
+        color: palette < 0.42
+          ? "144, 214, 255"
+          : palette < 0.78
+            ? "255, 184, 220"
+            : "238, 244, 236"
       });
     }
 
-    for (var j = 0; j < 22; j += 1) {
+    for (var j = 0; j < 34; j += 1) {
+      var color = Math.random() > 0.52 ? "148, 215, 255" : "255, 177, 218";
       bgLines.push({
-        x: Math.random() * rect.width,
-        y: Math.random() * rect.height,
-        len: Math.random() * 220 + 90,
-        alpha: Math.random() * 0.08 + 0.03,
-        speed: Math.random() * 0.05 + 0.015,
-        angle: (Math.random() * 0.28 - 0.14) + Math.PI * 0.08
+        x: rect.width * (0.18 + Math.random() * 0.68),
+        y: rect.height * (0.14 + Math.random() * 0.72),
+        len: Math.random() * 360 + 160,
+        alpha: Math.random() * 0.08 + 0.025,
+        speed: Math.random() * 0.012 + 0.004,
+        angle: -0.44 + Math.random() * 0.88,
+        color: color,
+        width: Math.random() * 1.4 + 0.6
       });
     }
   }
@@ -320,25 +325,47 @@
   function drawBackground(time) {
     var rect = bgCanvas.getBoundingClientRect();
     bgCtx.clearRect(0, 0, rect.width, rect.height);
-    bgCtx.fillStyle = "#050608";
+    bgCtx.fillStyle = "#000000";
     bgCtx.fillRect(0, 0, rect.width, rect.height);
 
-    var slowTime = time * 0.00014;
+    var slowTime = time * 0.00008;
+
+    bgCtx.save();
+    bgCtx.globalCompositeOperation = "screen";
+    var blueCloud = bgCtx.createRadialGradient(rect.width * 0.32, rect.height * 0.38, 0, rect.width * 0.32, rect.height * 0.38, rect.width * 0.45);
+    blueCloud.addColorStop(0, "rgba(144, 214, 255, 0.14)");
+    blueCloud.addColorStop(0.45, "rgba(144, 214, 255, 0.045)");
+    blueCloud.addColorStop(1, "rgba(144, 214, 255, 0)");
+    bgCtx.fillStyle = blueCloud;
+    bgCtx.fillRect(0, 0, rect.width, rect.height);
+
+    var pinkCloud = bgCtx.createRadialGradient(rect.width * 0.72, rect.height * 0.34, 0, rect.width * 0.72, rect.height * 0.34, rect.width * 0.42);
+    pinkCloud.addColorStop(0, "rgba(255, 184, 220, 0.12)");
+    pinkCloud.addColorStop(0.42, "rgba(255, 184, 220, 0.038)");
+    pinkCloud.addColorStop(1, "rgba(255, 184, 220, 0)");
+    bgCtx.fillStyle = pinkCloud;
+    bgCtx.fillRect(0, 0, rect.width, rect.height);
+    bgCtx.restore();
+
     bgCtx.save();
     bgCtx.globalCompositeOperation = "screen";
 
     for (var i = 0; i < bgLines.length; i += 1) {
       var line = bgLines[i];
-      line.x += Math.cos(line.angle) * line.speed;
-      line.y += Math.sin(line.angle) * line.speed;
+      if (!prefersReducedMotion) {
+        line.x += Math.cos(line.angle) * line.speed;
+        line.y += Math.sin(line.angle) * line.speed;
+      }
       if (line.x > rect.width + line.len) line.x = -line.len;
+      if (line.x < -line.len) line.x = rect.width + line.len;
       if (line.y > rect.height + line.len) line.y = -line.len;
+      if (line.y < -line.len) line.y = rect.height + line.len;
 
       bgCtx.beginPath();
       bgCtx.moveTo(line.x, line.y);
       bgCtx.lineTo(line.x + Math.cos(line.angle) * line.len, line.y + Math.sin(line.angle) * line.len);
-      bgCtx.strokeStyle = "rgba(197, 211, 190, " + line.alpha + ")";
-      bgCtx.lineWidth = 1;
+      bgCtx.strokeStyle = "rgba(" + line.color + ", " + line.alpha + ")";
+      bgCtx.lineWidth = line.width;
       bgCtx.stroke();
     }
 
@@ -346,33 +373,20 @@
       var point = bgPoints[j];
       if (!prefersReducedMotion) {
         point.y += point.speed * (0.4 + point.z);
-        point.x += Math.sin(slowTime + point.phase) * 0.07;
+        point.x += Math.sin(slowTime + point.phase) * 0.035;
       }
       if (point.y > rect.height + 8) {
         point.y = -8;
         point.x = Math.random() * rect.width;
       }
 
-      var alpha = 0.11 + point.z * 0.32;
-      bgCtx.fillStyle = "rgba(228, 234, 221, " + alpha + ")";
-      bgCtx.fillRect(point.x, point.y, point.z * 1.35, point.z * 1.35);
+      var pulse = 0.74 + Math.sin(time * 0.00075 + point.phase) * 0.26;
+      var alpha = (0.08 + point.z * 0.34) * pulse;
+      var size = point.z * 1.45;
+      bgCtx.fillStyle = "rgba(" + point.color + ", " + alpha + ")";
+      bgCtx.fillRect(point.x, point.y, size, size);
     }
 
-    bgCtx.restore();
-
-    bgCtx.save();
-    bgCtx.globalAlpha = 0.09;
-    bgCtx.strokeStyle = "#d5cab0";
-    bgCtx.lineWidth = 1;
-    var horizon = rect.height * 0.62;
-    for (var k = 0; k < 9; k += 1) {
-      var offset = (k * 38 + (time * 0.012)) % 340;
-      bgCtx.beginPath();
-      bgCtx.moveTo(rect.width * 0.08, horizon + offset);
-      bgCtx.lineTo(rect.width * 0.5, horizon - 84 + offset * 0.24);
-      bgCtx.lineTo(rect.width * 0.92, horizon + offset);
-      bgCtx.stroke();
-    }
     bgCtx.restore();
   }
 
@@ -409,6 +423,22 @@
       var alpha = clamp(shimmer, 0.3, 0.82);
       titleCtx.fillStyle = "rgba(238, 244, 236, " + alpha + ")";
       titleCtx.fillRect(p.x, p.y, p.size, p.size);
+    }
+
+    for (var s = titleSparkles.length - 1; s >= 0; s -= 1) {
+      var sparkle = titleSparkles[s];
+      sparkle.life -= prefersReducedMotion ? 1 : 0.018;
+      sparkle.x += sparkle.vx;
+      sparkle.y += sparkle.vy;
+      sparkle.vx *= 0.985;
+      sparkle.vy *= 0.985;
+      if (sparkle.life <= 0) {
+        titleSparkles.splice(s, 1);
+        continue;
+      }
+      var glow = sparkle.life * (0.42 + Math.sin(time * 0.006 + sparkle.phase) * 0.22);
+      titleCtx.fillStyle = "rgba(" + sparkle.color + ", " + clamp(glow, 0, 0.82) + ")";
+      titleCtx.fillRect(sparkle.x, sparkle.y, sparkle.size, sparkle.size);
     }
 
     titleCtx.restore();
@@ -483,14 +513,30 @@
     pointer.x = event.clientX - rect.left;
     pointer.y = event.clientY - rect.top;
     pointer.lastMove = performance.now();
+    addTitleSparkles();
   }
 
-  function portraitPointerPosition(event) {
-    var rect = portraitCanvas.getBoundingClientRect();
-    portraitPointer.x = event.clientX - rect.left;
-    portraitPointer.y = event.clientY - rect.top;
-    portraitPointer.lastMove = performance.now();
-    pointer.lastMove = portraitPointer.lastMove;
+  function addTitleSparkles() {
+    if (prefersReducedMotion || !pointer.active) return;
+
+    var amount = titleSparkles.length > 180 ? 2 : 5;
+    for (var i = 0; i < amount; i += 1) {
+      var color = Math.random() > 0.48 ? "144, 214, 255" : "255, 184, 220";
+      titleSparkles.push({
+        x: pointer.x + (Math.random() - 0.5) * 18,
+        y: pointer.y + (Math.random() - 0.5) * 18,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        size: Math.random() * 2 + 0.8,
+        life: Math.random() * 0.45 + 0.55,
+        phase: Math.random() * Math.PI * 2,
+        color: color
+      });
+    }
+
+    while (titleSparkles.length > 240) {
+      titleSparkles.shift();
+    }
   }
 
   function setupAudio() {
@@ -709,30 +755,6 @@
       titlePointerPosition(event);
       activateAudio();
     });
-
-    if (portraitField && portraitCanvas) {
-      portraitField.addEventListener("pointerenter", function (event) {
-        portraitPointer.active = true;
-        portraitPointerPosition(event);
-        activateAudio();
-      });
-
-      portraitField.addEventListener("pointermove", function (event) {
-        portraitPointer.active = true;
-        portraitPointerPosition(event);
-        activateAudio();
-      });
-
-      portraitField.addEventListener("pointerleave", function () {
-        portraitPointer.active = false;
-        softenAudio();
-      });
-
-      portraitField.addEventListener("pointerdown", function (event) {
-        portraitPointerPosition(event);
-        activateAudio();
-      });
-    }
 
     home.addEventListener("click", function (event) {
       if (event.target.closest("[data-close-profile]")) {
