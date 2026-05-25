@@ -21,15 +21,18 @@
   var portraitPointer = { x: 0, y: 0, active: false, lastMove: 0 };
   var profileDismissed = false;
   var columbiaEmail = "xc2826@columbia.edu";
-  var zhimiaoEmail = "zhimiao-email@example.com";
+  var outlookEmail = "veleskaaar@outlook.com";
   var titleParticles = [];
   var portraitParticles = [];
+  var titleSparkles = [];
+  var portraitSparkles = [];
   var bgPoints = [];
-  var bgLines = [];
   var titleCtx = titleCanvas.getContext("2d");
   var portraitCtx = portraitCanvas ? portraitCanvas.getContext("2d") : null;
   var bgImage = new Image();
   var bgReady = false;
+  var bgOffscreen = document.createElement("canvas");
+  var bgOffCtx = bgOffscreen.getContext("2d");
   var portraitImage = new Image();
   var portraitReady = false;
   var portraitDraw = null;
@@ -50,44 +53,47 @@
       title: "module.education",
       code:
         "const education = {\n" +
-        "  columbia: {\n" +
+        "  current: {\n" +
+        "    school: 'Columbia University',\n" +
         "    degree: 'M.A. Economics',\n" +
         "    location: 'New York, NY',\n" +
         "    period: '2025 - 2026 expected',\n" +
-        "    focus: ['microeconomic theory', 'behavioral economics', 'research methods']\n" +
+        "    focus: ['behavioral economics', 'microeconomic theory', 'econometrics', 'computational methods']\n" +
         "  },\n\n" +
-        "  soochow: {\n" +
+        "  undergraduate: {\n" +
+        "    school: 'Soochow University',\n" +
         "    degree: 'B.A. Economics',\n" +
         "    minor: 'Applied Psychology',\n" +
         "    period: '2021 - 2025',\n" +
-        "    honors: ['Academic Excellence Scholarship', 'ICM Meritorious Winner']\n" +
+        "    honors: ['Academic Excellence Scholarship', 'Meritorious Winner, Interdisciplinary Contest in Modeling']\n" +
         "  },\n\n" +
-        "  berkeley: {\n" +
+        "  visiting: {\n" +
+        "    school: 'UC Berkeley',\n" +
         "    program: 'Berkeley Global Access Program',\n" +
         "    period: 'Spring 2024',\n" +
-        "    note: 'Visiting student exploring economic research and algorithmic thinking.'\n" +
-        "  }\n" +
+        "    note: 'Coursework and research exposure in economics, data, and technology.'\n" +
+        "  },\n\n" +
+        "  throughline: 'economics + psychology + computation'\n" +
         "};",
       actions: []
     },
     research: {
       title: "module.research",
       code:
-        "const research = [\n" +
-        "  'reference points and value uncertainty',\n" +
-        "  'letter-spirit divergence and strategic compliance',\n" +
-        "  'AI-mediated negotiation behavior',\n" +
-        "  'nationalism and patriotism in firm narratives',\n" +
-        "  'older-worker reemployment and labor-market experience',\n" +
-        "  'NLP-assisted interview and text analysis'\n" +
-        "];\n\n" +
-        "function currentQuestion() {\n" +
-        "  return 'How do people and organizations interpret rules under uncertainty?';\n" +
-        "}\n\n" +
-        "export { research, currentQuestion };",
-      actions: [
-        { label: "Open Research", href: "/research/" }
-      ]
+        "const research = {\n" +
+        "  question: 'How do people and organizations interpret rules under uncertainty?',\n" +
+        "  directions: [\n" +
+        "    'reference points, value uncertainty, and decision framing',\n" +
+        "    'letter-spirit divergence and strategic compliance',\n" +
+        "    'AI-mediated negotiation behavior',\n" +
+        "    'nationalism, patriotism, and firm narratives',\n" +
+        "    'older-worker reemployment and labor-market experience'\n" +
+        "  ],\n" +
+        "  methods: ['experiment design', 'Python', 'Stata', 'NLP', 'survey design', 'text analysis'],\n" +
+        "  style: 'quiet empirical work with a human-behavior lens'\n" +
+        "};\n\n" +
+        "export default research;",
+      actions: []
     },
     cv: {
       title: "module.cv",
@@ -95,48 +101,49 @@
         "const cv = {\n" +
         "  name: 'Xi Chen',\n" +
         "  email: 'xc2826@columbia.edu',\n" +
+        "  alternateEmail: 'veleskaaar@outlook.com',\n" +
         "  current: 'M.A. Economics student at Columbia University',\n" +
         "  methods: ['Python', 'Stata', 'SQL', 'SPSS', 'MATLAB', 'NLP', 'experimental design'],\n" +
         "  teaching: 'Teaching Assistant, Intermediate Microeconomics, Columbia University',\n" +
-        "  status: 'open to research conversations and collaboration'\n" +
+        "  interests: ['behavioral economics', 'computational social science', 'organizational narratives'],\n" +
+        "  pdf: '/files/cv-xi-chen.pdf',\n" +
+        "  note: 'The PDF preview opens below this code block.'\n" +
         "};\n\n" +
-        "download(cv);",
-      actions: [
-        { label: "Open CV", href: "/cv/" },
-        { label: "Email", href: "mailto:xc2826@columbia.edu" }
-      ]
+        "open.pdf(cv.pdf);",
+      actions: []
     },
     other: {
       title: "module.other",
       code:
         "const other = {\n" +
-        "  style: 'quiet digital space',\n" +
-        "  palette: ['black', 'white', 'soft cyan', 'muted amber'],\n" +
+        "  interface: 'minimal terminal garden',\n" +
+        "  palette: ['black', 'white', 'glitter blue', 'soft pink', 'small gold'],\n" +
         "  interests: [\n" +
         "    'computational social science',\n" +
         "    'organizational narratives',\n" +
         "    'human-computer interaction',\n" +
         "    'behavior under institutional constraints'\n" +
         "  ],\n" +
-        "  next: 'Add publications, a real portrait, and project image cards.'\n" +
+        "  links: {\n" +
+        "    github: 'https://github.com/veleskaaar',\n" +
+        "    linkedin: 'https://www.linkedin.com/in/xi-veleska-chen-226176303/'\n" +
+        "  }\n" +
         "};",
-      actions: [
-        { label: "GitHub", href: "https://github.com/veleskaaar", external: true }
-      ]
+      actions: []
     },
     contact: {
       title: "module.contact",
       code:
         "const contact = {\n" +
         "  columbia: 'xc2826@columbia.edu',\n" +
-        "  zhimiao: 'zhimiao-email@example.com',\n" +
+        "  outlook: 'veleskaaar@outlook.com',\n" +
         "  github: 'https://github.com/veleskaaar',\n" +
-        "  linkedin: 'https://www.linkedin.com/in/xi-veleska-chen-226176303/?skipRedirect=true',\n" +
+        "  linkedin: 'https://www.linkedin.com/in/xi-veleska-chen-226176303/',\n" +
         "  location: 'New York, NY',\n" +
         "  note: 'Static-site mail form: opens your email client with a drafted message.'\n" +
         "};\n\n" +
         "send.message({\n" +
-        "  to: contact.zhimiao,\n" +
+        "  to: contact.outlook,\n" +
         "  cc: contact.columbia,\n" +
         "  tone: 'quiet',\n" +
         "  purpose: 'research conversation'\n" +
@@ -159,8 +166,21 @@
     return rect;
   }
 
+  function coverImageRect(width, height, imageWidth, imageHeight) {
+    var scale = Math.max(width / imageWidth, height / imageHeight);
+    var drawWidth = imageWidth * scale;
+    var drawHeight = imageHeight * scale;
+    return {
+      x: (width - drawWidth) / 2,
+      y: (height - drawHeight) / 2,
+      width: drawWidth,
+      height: drawHeight
+    };
+  }
+
   function createBackground() {
     resizeCanvas(bgCanvas);
+    buildBackgroundParticles();
   }
 
   function loadBackgroundImage() {
@@ -168,11 +188,180 @@
 
     bgImage.onload = function () {
       bgReady = true;
+      createBackground();
     };
     bgImage.src = bgCanvas.getAttribute("data-hero-galaxy") || "";
 
     if (bgImage.complete && bgImage.naturalWidth) {
       bgReady = true;
+      createBackground();
+    }
+  }
+
+  function glitterColor(red, green, blue, brightness, saturation) {
+    var palettes = [
+      { r: 154, g: 224, b: 255 },
+      { r: 255, g: 167, b: 224 },
+      { r: 255, g: 222, b: 122 },
+      { r: 199, g: 185, b: 255 },
+      { r: 245, g: 248, b: 255 }
+    ];
+    var roll = Math.random();
+    var colorIndex = roll < 0.4 ? 0 : roll < 0.75 ? 1 : roll < 0.9 ? 2 : 3;
+
+    if (brightness > 236 && saturation < 0.12 && Math.random() < 0.18) {
+      colorIndex = 4;
+    } else if (red > blue + 28 && Math.random() < 0.65) {
+      colorIndex = 1;
+    } else if (green > red + 18 && brightness > 110 && Math.random() < 0.55) {
+      colorIndex = 2;
+    } else if (saturation > 0.34 && blue > red && Math.random() < 0.7) {
+      colorIndex = 3;
+    }
+
+    return palettes[colorIndex];
+  }
+
+  function buildBackgroundParticles() {
+    var rect = bgCanvas.getBoundingClientRect();
+    bgPoints = [];
+
+    if (!bgReady || !bgImage.naturalWidth || !rect.width || !rect.height) return;
+
+    bgOffscreen.width = Math.max(1, Math.floor(rect.width));
+    bgOffscreen.height = Math.max(1, Math.floor(rect.height));
+    bgOffCtx.clearRect(0, 0, bgOffscreen.width, bgOffscreen.height);
+    bgOffCtx.fillStyle = "#000000";
+    bgOffCtx.fillRect(0, 0, bgOffscreen.width, bgOffscreen.height);
+
+    var cover = coverImageRect(
+      bgOffscreen.width,
+      bgOffscreen.height,
+      bgImage.naturalWidth,
+      bgImage.naturalHeight
+    );
+
+    bgOffCtx.save();
+    bgOffCtx.filter = "saturate(1.45) contrast(1.18) brightness(1.2)";
+    bgOffCtx.drawImage(bgImage, cover.x, cover.y, cover.width, cover.height);
+    bgOffCtx.restore();
+
+    var pixels = bgOffCtx.getImageData(0, 0, bgOffscreen.width, bgOffscreen.height).data;
+    var gap = rect.width < 560 ? 5 : 4;
+    var maxParticles = rect.width < 560 ? 6800 : 14800;
+
+    for (var y = 0; y < bgOffscreen.height; y += gap) {
+      for (var x = 0; x < bgOffscreen.width; x += gap) {
+        var index = (y * bgOffscreen.width + x) * 4;
+        var red = pixels[index];
+        var green = pixels[index + 1];
+        var blue = pixels[index + 2];
+        var high = Math.max(red, green, blue);
+        var low = Math.min(red, green, blue);
+        var brightness = (red + green + blue) / 3;
+        var saturation = (high - low) / 255;
+        var chance = clamp((brightness - 18) / 255 * 0.64 + saturation * 0.54, 0.03, 0.86);
+
+        if (Math.random() > chance) continue;
+
+        var color = glitterColor(red, green, blue, brightness, saturation);
+        bgPoints.push({
+          x: x + (Math.random() - 0.5) * gap,
+          y: y + (Math.random() - 0.5) * gap,
+          r: color.r,
+          g: color.g,
+          b: color.b,
+          alpha: clamp(0.32 + brightness / 255 * 0.72 + saturation * 0.22, 0.28, 0.98),
+          size: Math.random() < 0.1 ? Math.random() * 2.2 + 1.3 : Math.random() * 1.15 + 0.58,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.00075 + 0.00035,
+          drift: Math.random() * 2.2 + 0.35
+        });
+      }
+    }
+
+    while (bgPoints.length > maxParticles) {
+      bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
+    }
+
+    var ambientCount = Math.floor(maxParticles * 0.34);
+    for (var i = 0; i < ambientCount; i += 1) {
+      var ambient = [
+        { r: 148, g: 221, b: 255 },
+        { r: 255, g: 174, b: 220 },
+        { r: 255, g: 222, b: 134 }
+      ][Math.floor(Math.random() * 3)];
+      bgPoints.push({
+        x: Math.random() * rect.width,
+        y: Math.random() * rect.height,
+        r: ambient.r,
+        g: ambient.g,
+        b: ambient.b,
+        alpha: Math.random() * 0.3 + 0.14,
+        size: Math.random() * 1.15 + 0.45,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.00055 + 0.00025,
+        drift: Math.random() * 2.8 + 0.4
+      });
+    }
+  }
+
+  function addSparkles(list, x, y, count) {
+    if (prefersReducedMotion) return;
+
+    var colors = [
+      { r: 158, g: 226, b: 255 },
+      { r: 255, g: 178, b: 224 },
+      { r: 255, g: 222, b: 134 },
+      { r: 248, g: 248, b: 238 }
+    ];
+
+    for (var i = 0; i < count; i += 1) {
+      var color = colors[Math.floor(Math.random() * colors.length)];
+      var angle = Math.random() * Math.PI * 2;
+      var speed = Math.random() * 1.4 + 0.18;
+      list.push({
+        x: x + (Math.random() - 0.5) * 18,
+        y: y + (Math.random() - 0.5) * 18,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: color.r,
+        g: color.g,
+        b: color.b,
+        size: Math.random() * 1.9 + 0.8,
+        age: 0,
+        life: Math.random() * 34 + 42
+      });
+    }
+
+    while (list.length > 180) {
+      list.shift();
+    }
+  }
+
+  function drawSparkles(ctx, list) {
+    for (var i = list.length - 1; i >= 0; i -= 1) {
+      var sparkle = list[i];
+      sparkle.age += 1;
+      sparkle.x += sparkle.vx;
+      sparkle.y += sparkle.vy;
+      sparkle.vx *= 0.962;
+      sparkle.vy *= 0.962;
+
+      var alpha = 1 - sparkle.age / sparkle.life;
+      if (alpha <= 0) {
+        list.splice(i, 1);
+        continue;
+      }
+
+      ctx.fillStyle = "rgba(" + sparkle.r + ", " + sparkle.g + ", " + sparkle.b + ", " + clamp(alpha, 0, 0.88) + ")";
+      ctx.fillRect(sparkle.x, sparkle.y, sparkle.size, sparkle.size);
+
+      if (sparkle.size > 1.6) {
+        ctx.fillStyle = "rgba(" + sparkle.r + ", " + sparkle.g + ", " + sparkle.b + ", " + clamp(alpha * 0.36, 0, 0.28) + ")";
+        ctx.fillRect(sparkle.x - sparkle.size * 1.3, sparkle.y + sparkle.size * 0.4, sparkle.size * 3.1, 0.7);
+        ctx.fillRect(sparkle.x + sparkle.size * 0.4, sparkle.y - sparkle.size * 1.3, 0.7, sparkle.size * 3.1);
+      }
     }
   }
 
@@ -310,17 +499,28 @@
     bgCtx.fillStyle = "#000000";
     bgCtx.fillRect(0, 0, rect.width, rect.height);
 
-    if (!bgReady || !bgImage.naturalWidth) return;
-
-    var scale = Math.max(rect.width / bgImage.naturalWidth, rect.height / bgImage.naturalHeight);
-    var drawWidth = bgImage.naturalWidth * scale;
-    var drawHeight = bgImage.naturalHeight * scale;
-    var drawX = (rect.width - drawWidth) / 2;
-    var drawY = (rect.height - drawHeight) / 2;
+    if (!bgPoints.length) return;
 
     bgCtx.save();
-    bgCtx.filter = "saturate(0.98) contrast(1.02) brightness(0.68)";
-    bgCtx.drawImage(bgImage, drawX, drawY, drawWidth, drawHeight);
+    bgCtx.globalCompositeOperation = "screen";
+
+    for (var i = 0; i < bgPoints.length; i += 1) {
+      var p = bgPoints[i];
+      var driftX = Math.sin(time * p.speed + p.phase) * p.drift;
+      var driftY = Math.cos(time * p.speed * 0.72 + p.phase) * p.drift * 0.55;
+      var pulse = 0.66 + Math.sin(time * 0.0012 + p.phase) * 0.28;
+      var alpha = clamp(p.alpha * pulse, 0.04, 0.92);
+
+      bgCtx.fillStyle = "rgba(" + p.r + ", " + p.g + ", " + p.b + ", " + alpha + ")";
+      bgCtx.fillRect(p.x + driftX, p.y + driftY, p.size, p.size);
+
+      if (p.size > 1.6 && alpha > 0.48) {
+        bgCtx.fillStyle = "rgba(" + p.r + ", " + p.g + ", " + p.b + ", " + alpha * 0.18 + ")";
+        bgCtx.fillRect(p.x + driftX - p.size, p.y + driftY, p.size * 3.2, 0.7);
+        bgCtx.fillRect(p.x + driftX, p.y + driftY - p.size, 0.7, p.size * 3.2);
+      }
+    }
+
     bgCtx.restore();
   }
 
@@ -359,6 +559,7 @@
       titleCtx.fillRect(p.x, p.y, p.size, p.size);
     }
 
+    drawSparkles(titleCtx, titleSparkles);
     titleCtx.restore();
   }
 
@@ -372,8 +573,8 @@
     if (portraitDraw) {
       portraitCtx.save();
       portraitCtx.globalCompositeOperation = "screen";
-      portraitCtx.globalAlpha = portraitPointer.active ? 0.2 : 0.34;
-      portraitCtx.filter = "contrast(1.18) brightness(1.12)";
+      portraitCtx.globalAlpha = 0.3;
+      portraitCtx.filter = "contrast(1.2) brightness(1.04)";
       portraitCtx.drawImage(
         portraitImage,
         portraitDraw.x,
@@ -411,11 +612,12 @@
       p.y += p.vy;
 
       var shimmer = 0.82 + Math.sin(time * 0.0009 + p.shimmer) * 0.14;
-      var alpha = clamp(p.alpha * shimmer, 0.24, 0.96);
-      portraitCtx.fillStyle = "rgba(238, 244, 236, " + alpha + ")";
+      var alpha = clamp(p.alpha * shimmer, 0.34, 0.98);
+      portraitCtx.fillStyle = "rgba(248, 248, 238, " + alpha + ")";
       portraitCtx.fillRect(p.x, p.y, p.size, p.size);
     }
 
+    drawSparkles(portraitCtx, portraitSparkles);
     portraitCtx.restore();
   }
 
@@ -431,6 +633,7 @@
     pointer.x = event.clientX - rect.left;
     pointer.y = event.clientY - rect.top;
     pointer.lastMove = performance.now();
+    addSparkles(titleSparkles, pointer.x, pointer.y, 2);
   }
 
   function portraitPointerPosition(event) {
@@ -439,6 +642,7 @@
     portraitPointer.y = event.clientY - rect.top;
     portraitPointer.lastMove = performance.now();
     pointer.lastMove = portraitPointer.lastMove;
+    addSparkles(portraitSparkles, portraitPointer.x, portraitPointer.y, 3);
   }
 
   function setupAudio() {
@@ -590,6 +794,7 @@
     typeCode(module.code);
     renderActions(module.actions || []);
     codePanel.classList.toggle("is-contact", name === "contact");
+    codePanel.classList.toggle("is-cv", name === "cv");
     codePanel.classList.add("is-open");
     codePanel.setAttribute("aria-hidden", "false");
   }
@@ -597,6 +802,7 @@
   function closePanel() {
     codePanel.classList.remove("is-open");
     codePanel.classList.remove("is-contact");
+    codePanel.classList.remove("is-cv");
     codePanel.setAttribute("aria-hidden", "true");
   }
 
@@ -627,7 +833,7 @@
       : "Hi Xi,\n\n";
 
     var mailto =
-      "mailto:" + zhimiaoEmail +
+      "mailto:" + outlookEmail +
       "?cc=" + encodeURIComponent(columbiaEmail) +
       "&subject=" + encodeURIComponent(subject) +
       "&body=" + encodeURIComponent(message);

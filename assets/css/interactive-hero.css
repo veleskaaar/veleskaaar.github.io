@@ -49,11 +49,9 @@ body.interactive-home-shell {
 
 .quiet-hero::before {
   background:
-    linear-gradient(90deg, rgba(218, 224, 214, 0.045) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(218, 224, 214, 0.035) 1px, transparent 1px);
-  background-size: 82px 82px, 82px 82px;
-  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
-  opacity: 0.32;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.18)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.28), transparent 28%, transparent 72%, rgba(0, 0, 0, 0.28));
+  opacity: 0.42;
   z-index: 1;
 }
 
@@ -78,8 +76,8 @@ body.interactive-home-shell {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.34)),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.48), transparent 24%, transparent 76%, rgba(0, 0, 0, 0.48));
+    linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.16)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2), transparent 24%, transparent 76%, rgba(0, 0, 0, 0.2));
   z-index: 3;
   pointer-events: none;
 }
@@ -103,7 +101,6 @@ body.interactive-home-shell {
 }
 
 .quiet-home__nav-item,
-.quiet-home__mail-tag,
 .quiet-profile__dock button,
 .quiet-code__actions a,
 .quiet-code__actions button {
@@ -141,23 +138,6 @@ body.interactive-home-shell {
   background: rgba(149, 225, 255, 0.08);
   transform: translateY(-1px);
   outline: none;
-}
-
-.quiet-home__mail-tag {
-  position: fixed;
-  z-index: 31;
-  top: clamp(78px, 7vw, 90px);
-  right: clamp(16px, 4vw, 42px);
-  min-width: 190px;
-  padding: 10px 12px;
-  border-radius: 6px;
-  color: rgba(244, 245, 242, 0.62);
-  font-family: var(--terminal-font);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-align: center;
-  backdrop-filter: blur(16px);
-  pointer-events: none;
 }
 
 .quiet-hero__content {
@@ -519,6 +499,10 @@ body.interactive-home-shell {
   transform: translateY(0) scale(1);
 }
 
+.quiet-code.is-cv .quiet-code__window {
+  width: min(1020px, 100%);
+}
+
 .quiet-code__bar {
   display: grid;
   grid-template-columns: 10px 10px 10px 1fr auto;
@@ -583,9 +567,36 @@ body.interactive-home-shell {
   max-height: clamp(180px, 32vh, 300px);
 }
 
+.quiet-code.is-cv .quiet-code__body {
+  min-height: 150px;
+  max-height: clamp(150px, 26vh, 230px);
+}
+
+.quiet-pdf-viewer {
+  display: none;
+  padding: 0 clamp(18px, 4vw, 30px) clamp(18px, 4vw, 30px);
+}
+
+.quiet-code.is-cv .quiet-pdf-viewer {
+  display: block;
+}
+
+.quiet-pdf-viewer iframe {
+  display: block;
+  width: 100%;
+  height: min(58vh, 560px);
+  border: 1px solid rgba(244, 245, 242, 0.16);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
 .quiet-code__actions {
   margin: 0;
   padding: 0 clamp(18px, 4vw, 30px) clamp(18px, 4vw, 28px);
+}
+
+.quiet-code__actions:empty {
+  display: none;
 }
 
 .quiet-contact-form {
@@ -665,11 +676,6 @@ body.interactive-home-shell {
     width: min(520px, calc(100% - 26px));
   }
 
-  .quiet-home__mail-tag {
-    top: 128px;
-    right: 13px;
-  }
-
   .quiet-hero__content {
     width: min(100% - 28px, 620px);
     padding-top: 144px;
@@ -696,10 +702,6 @@ body.interactive-home-shell {
 }
 
 @media (max-width: 520px) {
-  .quiet-home__mail-tag {
-    display: none;
-  }
-
   .quiet-home__nav {
     grid-template-columns: repeat(2, 1fr);
   }
