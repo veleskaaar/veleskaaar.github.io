@@ -48,106 +48,121 @@
     scheduling: false
   };
 
+  function block(lines) {
+    return lines.join("\n");
+  }
+
   var modules = {
     education: {
       title: "module.education",
-      code:
-        "const education = {\n" +
-        "  current: {\n" +
-        "    school: 'Columbia University',\n" +
-        "    degree: 'M.A. Economics',\n" +
-        "    location: 'New York, NY',\n" +
-        "    period: '2025 - 2026 expected',\n" +
-        "    focus: ['behavioral economics', 'microeconomic theory', 'econometrics', 'computational methods']\n" +
-        "  },\n\n" +
-        "  undergraduate: {\n" +
-        "    school: 'Soochow University',\n" +
-        "    degree: 'B.A. Economics',\n" +
-        "    minor: 'Applied Psychology',\n" +
-        "    period: '2021 - 2025',\n" +
-        "    honors: ['Academic Excellence Scholarship', 'Meritorious Winner, Interdisciplinary Contest in Modeling']\n" +
-        "  },\n\n" +
-        "  visiting: {\n" +
-        "    school: 'UC Berkeley',\n" +
-        "    program: 'Berkeley Global Access Program',\n" +
-        "    period: 'Spring 2024',\n" +
-        "    note: 'Coursework and research exposure in economics, data, and technology.'\n" +
-        "  },\n\n" +
-        "  throughline: 'economics + psychology + computation'\n" +
-        "};",
+      code: block([
+        "EDUCATION",
+        "",
+        "Columbia University",
+        "M.A. in Economics | 2025-2026 expected",
+        "I am currently pursuing an M.A. in Economics at Columbia University. My graduate training focuses on microeconomic theory, behavioral economics, and empirical methods, and has strengthened my interest in using formal economic reasoning to study decision-making, incentives, and behavior in organizational and institutional settings.",
+        "",
+        "Soochow University",
+        "B.A. in Economics, minor in Applied Psychology | 2021-2025",
+        "I received my B.A. in Economics from Soochow University, with a minor in Applied Psychology. This combination shaped the interdisciplinary foundation of my research interests: I approach economic behavior not only through incentives and constraints, but also through cognition, judgment, motivation, and social context.",
+        "",
+        "University of California, Berkeley",
+        "Visiting Student, Berkeley Global Access Program | Spring 2024",
+        "As a visiting student at UC Berkeley, I explored topics in economic research and algorithmic approaches. This experience further encouraged my interest in connecting behavioral questions with computational tools, empirical research design, and broader social-scientific inquiry."
+      ]),
       actions: []
     },
     research: {
       title: "module.research",
-      code:
-        "const research = {\n" +
-        "  question: 'How do people and organizations interpret rules under uncertainty?',\n" +
-        "  directions: [\n" +
-        "    'reference points, value uncertainty, and decision framing',\n" +
-        "    'letter-spirit divergence and strategic compliance',\n" +
-        "    'AI-mediated negotiation behavior',\n" +
-        "    'nationalism, patriotism, and firm narratives',\n" +
-        "    'older-worker reemployment and labor-market experience'\n" +
-        "  ],\n" +
-        "  methods: ['experiment design', 'Python', 'Stata', 'NLP', 'survey design', 'text analysis'],\n" +
-        "  style: 'quiet empirical work with a human-behavior lens'\n" +
-        "};\n\n" +
-        "export default research;",
+      code: block([
+        "RESEARCH",
+        "",
+        "Reference Points and Value Uncertainty",
+        "Incoming Summer Research Assistant, Columbia University | supervised by Prof. Mark Dean",
+        "I will work as a Summer Research Assistant in the Columbia Economics Department on an ongoing project related to reference points and value uncertainty. This project is closely connected to my interest in behavioral decision theory, especially how individuals form, revise, and act upon reference-dependent evaluations under uncertainty.",
+        "",
+        "Letter-Spirit Divergence and Strategic Compliance",
+        "Research Assistant, Columbia Business School, Morris Lab | supervised by Prof. Michael Morris",
+        "At Columbia Business School, I contribute to a research project on malicious compliance, strategic rule adherence, and the divergence between the letter and spirit of rules. This work reflects one of my central research interests: how people interpret rules, navigate institutional expectations, and make decisions in environments where formal requirements and social meaning may not fully align.",
+        "",
+        "AI-Mediated Negotiation Behavior",
+        "I have also contributed to the design and implementation of a chatbot-based negotiation experiment. This project examines how negotiation behavior may differ when participants interact with AI versus human counterparts, connecting organizational behavior, experimental design, and human-AI interaction.",
+        "",
+        "Organizational and Institutional Research Projects",
+        "Research Assistant, Columbia Business School | supervised by Prof. Lori Yue",
+        "I have supported research on how nationalism and patriotism are expressed in organizational narratives and corporate behavior. My work involves literature review, text data collection and coding, and NLP-based semantic analysis of firm communications, which connects my interests in organizational behavior, institutional environments, and computational social science.",
+        "",
+        "Older Worker Reemployment",
+        "Researcher, coauthored project under review",
+        "I worked on a structured review project on the reemployment process and experiences of older workers. The project involved large-scale literature screening, bibliometric mapping, and thematic synthesis, and contributed to a coauthored paper currently under review. This experience trained me to think systematically about how individual labor-market experiences are shaped by organizational practices, social perceptions, and institutional structures.",
+        "",
+        "Work-Family Conflict and Psychological Resilience",
+        "Capstone Project",
+        "For my capstone project, I conducted semi-structured interviews with accompanying mothers to study work-family conflict and psychological resilience. I used NLP-based methods, including SpaCy, Sentence Transformers, VADER, and TextBlob, to analyze interview narratives. This project reflects my broader interest in using computational tools to study psychologically rich and socially embedded human experiences.",
+        "",
+        "Human-Computer Interaction and Consumer Choice",
+        "Project Director",
+        "I directed a research project on how human-computer interaction features of smart wearable devices influence consumer purchase intentions. The project combined bibliometric analysis, discrete choice experiment design, survey implementation, and binary logit modeling. It gave me early training in connecting behavioral theory, experimental choice design, and quantitative modeling.",
+        "",
+        "Working paper",
+        "To be added."
+      ]),
       actions: []
     },
     cv: {
       title: "module.cv",
-      code:
-        "const cv = {\n" +
-        "  name: 'Xi Chen',\n" +
-        "  email: 'xc2826@columbia.edu',\n" +
-        "  alternateEmail: 'veleskaaar@outlook.com',\n" +
-        "  current: 'M.A. Economics student at Columbia University',\n" +
-        "  methods: ['Python', 'Stata', 'SQL', 'SPSS', 'MATLAB', 'NLP', 'experimental design'],\n" +
-        "  teaching: 'Teaching Assistant, Intermediate Microeconomics, Columbia University',\n" +
-        "  interests: ['behavioral economics', 'computational social science', 'organizational narratives'],\n" +
-        "  pdf: '/files/cv-xi-chen.pdf',\n" +
-        "  note: 'The PDF preview opens below this code block.'\n" +
-        "};\n\n" +
-        "open.pdf(cv.pdf);",
+      code: block([
+        "CV",
+        "",
+        "Xi (Veleska) Chen",
+        "M.A. Economics student, Columbia University",
+        "",
+        "Research interests",
+        "Behavioral economics; microeconomic theory; organizational behavior; psychology; computational social science.",
+        "",
+        "Methods",
+        "Formal economic reasoning, experimental design, survey-based measurement, discrete choice methods, NLP/text-as-data analysis.",
+        "",
+        "Programming and tools",
+        "Python, C++, SPSS, SQL, Stata, MATLAB.",
+        "",
+        "The PDF preview opens below this text."
+      ]),
       actions: []
     },
     other: {
       title: "module.other",
-      code:
-        "const other = {\n" +
-        "  interface: 'minimal terminal garden',\n" +
-        "  palette: ['black', 'white', 'glitter blue', 'soft pink', 'small gold'],\n" +
-        "  interests: [\n" +
-        "    'computational social science',\n" +
-        "    'organizational narratives',\n" +
-        "    'human-computer interaction',\n" +
-        "    'behavior under institutional constraints'\n" +
-        "  ],\n" +
-        "  links: {\n" +
-        "    github: 'https://github.com/veleskaaar',\n" +
-        "    linkedin: 'https://www.linkedin.com/in/xi-veleska-chen-226176303/'\n" +
-        "  }\n" +
-        "};",
+      code: block([
+        "OTHER",
+        "",
+        "Teaching",
+        "I served as a Teaching Assistant for Intermediate Microeconomics at Columbia University. In this role, I led weekly recitation sessions, held office hours, graded problem sets, and helped prepare review materials. Teaching microeconomics has made me more attentive to the craft of explanation: how abstract models, once carefully unpacked, can become intuitive tools for understanding behavior.",
+        "",
+        "Skills and Methods",
+        "My research toolkit includes Python, C++, SPSS, SQL, Stata, and MATLAB. I am especially interested in combining formal economic modeling, experimental design, survey-based measurement, discrete choice methods, and NLP/text-as-data approaches.",
+        "",
+        "Beyond Research",
+        "Outside academic work, I am drawn to literature, choreography, and movement. I enjoy reading literary and philosophical works, choreographing in styles such as jazz and Afro, and staying active through swimming. These interests reflect a different but related part of my intellectual life: an interest in rhythm, interpretation, structure, and the many ways people move through social worlds.",
+        "",
+        "Links",
+        "GitHub: https://github.com/veleskaaar",
+        "LinkedIn: https://www.linkedin.com/in/xi-veleska-chen-226176303/"
+      ]),
       actions: []
     },
     contact: {
       title: "module.contact",
-      code:
-        "const contact = {\n" +
-        "  columbia: 'xc2826@columbia.edu',\n" +
-        "  outlook: 'veleskaaar@outlook.com',\n" +
-        "  github: 'https://github.com/veleskaaar',\n" +
-        "  linkedin: 'https://www.linkedin.com/in/xi-veleska-chen-226176303/',\n" +
-        "  location: 'New York, NY',\n" +
-        "  note: 'Static-site mail form: opens your email client with a drafted message.'\n" +
-        "};\n\n" +
-        "send.message({\n" +
-        "  to: contact.outlook,\n" +
-        "  cc: contact.columbia,\n" +
-        "  tone: 'quiet',\n" +
-        "  purpose: 'research conversation'\n" +
-        "});",
+      code: block([
+        "CONTACT",
+        "",
+        "Columbia: xc2826@columbia.edu",
+        "Outlook: veleskaaar@outlook.com",
+        "",
+        "GitHub: https://github.com/veleskaaar",
+        "LinkedIn: https://www.linkedin.com/in/xi-veleska-chen-226176303/",
+        "",
+        "Use the message box below to draft an email to my Outlook address, with my Columbia email copied."
+      ]),
       actions: []
     }
   };
@@ -200,14 +215,14 @@
 
   function glitterColor(red, green, blue, brightness, saturation) {
     var palettes = [
-      { r: 154, g: 224, b: 255 },
-      { r: 255, g: 167, b: 224 },
-      { r: 255, g: 222, b: 122 },
-      { r: 199, g: 185, b: 255 },
-      { r: 245, g: 248, b: 255 }
+      { r: 114, g: 220, b: 255 },
+      { r: 255, g: 128, b: 221 },
+      { r: 255, g: 217, b: 92 },
+      { r: 180, g: 164, b: 255 },
+      { r: 250, g: 252, b: 255 }
     ];
     var roll = Math.random();
-    var colorIndex = roll < 0.4 ? 0 : roll < 0.75 ? 1 : roll < 0.9 ? 2 : 3;
+    var colorIndex = roll < 0.44 ? 0 : roll < 0.76 ? 1 : roll < 0.91 ? 2 : 3;
 
     if (brightness > 236 && saturation < 0.12 && Math.random() < 0.18) {
       colorIndex = 4;
@@ -242,13 +257,13 @@
     );
 
     bgOffCtx.save();
-    bgOffCtx.filter = "saturate(1.45) contrast(1.18) brightness(1.2)";
+    bgOffCtx.filter = "saturate(1.7) contrast(1.26) brightness(1.34)";
     bgOffCtx.drawImage(bgImage, cover.x, cover.y, cover.width, cover.height);
     bgOffCtx.restore();
 
     var pixels = bgOffCtx.getImageData(0, 0, bgOffscreen.width, bgOffscreen.height).data;
     var gap = rect.width < 560 ? 5 : 4;
-    var maxParticles = rect.width < 560 ? 6800 : 14800;
+    var maxParticles = rect.width < 560 ? 5600 : 10800;
 
     for (var y = 0; y < bgOffscreen.height; y += gap) {
       for (var x = 0; x < bgOffscreen.width; x += gap) {
@@ -260,7 +275,7 @@
         var low = Math.min(red, green, blue);
         var brightness = (red + green + blue) / 3;
         var saturation = (high - low) / 255;
-        var chance = clamp((brightness - 18) / 255 * 0.64 + saturation * 0.54, 0.03, 0.86);
+        var chance = clamp((brightness - 8) / 255 * 0.72 + saturation * 0.64, 0.06, 0.92);
 
         if (Math.random() > chance) continue;
 
@@ -271,11 +286,12 @@
           r: color.r,
           g: color.g,
           b: color.b,
-          alpha: clamp(0.32 + brightness / 255 * 0.72 + saturation * 0.22, 0.28, 0.98),
-          size: Math.random() < 0.1 ? Math.random() * 2.2 + 1.3 : Math.random() * 1.15 + 0.58,
+          alpha: clamp(0.38 + brightness / 255 * 0.78 + saturation * 0.28, 0.32, 1),
+          size: Math.random() < 0.14 ? Math.random() * 2.7 + 1.35 : Math.random() * 1.25 + 0.65,
           phase: Math.random() * Math.PI * 2,
-          speed: Math.random() * 0.00075 + 0.00035,
-          drift: Math.random() * 2.2 + 0.35
+          speed: Math.random() * 0.00078 + 0.00034,
+          drift: Math.random() * 2.6 + 0.45,
+          metallic: Math.random() < 0.18
         });
       }
     }
@@ -284,25 +300,75 @@
       bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
     }
 
-    var ambientCount = Math.floor(maxParticles * 0.34);
+    var ambientCount = Math.floor(maxParticles * 0.32);
     for (var i = 0; i < ambientCount; i += 1) {
       var ambient = [
-        { r: 148, g: 221, b: 255 },
-        { r: 255, g: 174, b: 220 },
-        { r: 255, g: 222, b: 134 }
-      ][Math.floor(Math.random() * 3)];
+        { r: 116, g: 219, b: 255 },
+        { r: 255, g: 136, b: 220 },
+        { r: 255, g: 220, b: 98 },
+        { r: 190, g: 170, b: 255 }
+      ][Math.floor(Math.random() * 4)];
       bgPoints.push({
         x: Math.random() * rect.width,
         y: Math.random() * rect.height,
         r: ambient.r,
         g: ambient.g,
         b: ambient.b,
-        alpha: Math.random() * 0.3 + 0.14,
-        size: Math.random() * 1.15 + 0.45,
+        alpha: Math.random() * 0.34 + 0.16,
+        size: Math.random() * 1.35 + 0.5,
         phase: Math.random() * Math.PI * 2,
         speed: Math.random() * 0.00055 + 0.00025,
-        drift: Math.random() * 2.8 + 0.4
+        drift: Math.random() * 3.2 + 0.5,
+        metallic: Math.random() < 0.12
       });
+    }
+
+    var galaxyCount = rect.width < 560 ? 2800 : 5600;
+    var centerX = rect.width * 0.52;
+    var centerY = rect.height * 0.45;
+    var radiusX = rect.width * 0.72;
+    var radiusY = rect.height * 0.42;
+    var tilt = -0.18;
+    var cosTilt = Math.cos(tilt);
+    var sinTilt = Math.sin(tilt);
+
+    for (var g = 0; g < galaxyCount; g += 1) {
+      var radius = Math.pow(Math.random(), 0.55);
+      var arm = Math.floor(Math.random() * 4);
+      var theta = arm * Math.PI * 0.5 + radius * 4.2 + (Math.random() - 0.5) * (0.72 - radius * 0.34);
+      var scatter = (1 - radius) * 0.18 + 0.035;
+      var localX = Math.cos(theta) * radiusX * radius + (Math.random() - 0.5) * rect.width * scatter;
+      var localY = Math.sin(theta) * radiusY * radius + (Math.random() - 0.5) * rect.height * scatter;
+      var x = centerX + localX * cosTilt - localY * sinTilt;
+      var y = centerY + localX * sinTilt + localY * cosTilt;
+
+      if (x < -40 || x > rect.width + 40 || y < -40 || y > rect.height + 40) continue;
+
+      var streamColor = [
+        { r: 92, g: 210, b: 255 },
+        { r: 255, g: 123, b: 218 },
+        { r: 255, g: 217, b: 86 },
+        { r: 236, g: 240, b: 255 }
+      ][Math.floor(Math.random() * 4)];
+      var coreBoost = 1 - radius;
+      bgPoints.push({
+        x: x,
+        y: y,
+        r: streamColor.r,
+        g: streamColor.g,
+        b: streamColor.b,
+        alpha: clamp(0.28 + coreBoost * 0.54 + Math.random() * 0.3, 0.24, 0.98),
+        size: Math.random() < 0.2 ? Math.random() * 2.6 + 1.2 : Math.random() * 1.28 + 0.58,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.0007 + 0.00025,
+        drift: Math.random() * 2.4 + 0.5,
+        metallic: Math.random() < 0.28
+      });
+    }
+
+    var totalMax = rect.width < 560 ? 9800 : 18000;
+    while (bgPoints.length > totalMax) {
+      bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
     }
   }
 
@@ -373,7 +439,7 @@
     offscreen.width = Math.floor(rect.width);
     offscreen.height = Math.floor(rect.height);
 
-    var fontSize = clamp(Math.min(rect.width * 0.2, rect.height * 0.78), 70, 178);
+    var fontSize = clamp(Math.min(rect.width * 0.15, rect.height * 0.74), 54, 150);
     offCtx.textAlign = "center";
     offCtx.textBaseline = "middle";
     offCtx.font = "800 " + fontSize + "px \"SFMono-Regular\", \"JetBrains Mono\", \"IBM Plex Mono\", \"Fira Code\", \"Cascadia Code\", Menlo, Monaco, Consolas, monospace";
@@ -388,7 +454,7 @@
     offCtx.fillText(text, rect.width / 2, rect.height / 2 + fontSize * 0.02);
 
     var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-    var gap = rect.width < 620 ? 5 : 4;
+    var gap = rect.width < 620 ? 4 : 3;
     var targets = [];
     for (var y = 0; y < offscreen.height; y += gap) {
       for (var x = 0; x < offscreen.width; x += gap) {
@@ -399,7 +465,7 @@
       }
     }
 
-    var maxParticles = rect.width < 620 ? 1650 : 3100;
+    var maxParticles = rect.width < 620 ? 2200 : 5000;
     while (targets.length > maxParticles) {
       targets.splice(Math.floor(Math.random() * targets.length), 1);
     }
@@ -407,13 +473,13 @@
     titleParticles = targets.map(function (target, index) {
       var existing = titleParticles[index];
       return {
-        x: existing ? existing.x : target.x + (Math.random() - 0.5) * rect.width,
-        y: existing ? existing.y : target.y + (Math.random() - 0.5) * rect.height,
+        x: existing ? existing.x : target.x + (Math.random() - 0.5) * 12,
+        y: existing ? existing.y : target.y + (Math.random() - 0.5) * 12,
         tx: target.x,
         ty: target.y,
         vx: existing ? existing.vx : 0,
         vy: existing ? existing.vy : 0,
-        size: Math.random() * 1.5 + 0.7,
+        size: Math.random() * 1.55 + 1.0,
         shimmer: Math.random() * Math.PI * 2
       };
     });
@@ -455,24 +521,24 @@
     offCtx.drawImage(portraitImage, drawX, drawY, drawWidth, drawHeight);
 
     var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-    var gap = rect.width < 420 ? 3 : 4;
+    var gap = 3;
     var targets = [];
 
     for (var y = 0; y < offscreen.height; y += gap) {
       for (var x = 0; x < offscreen.width; x += gap) {
         var index = (y * offscreen.width + x) * 4;
         var brightness = (pixels[index] + pixels[index + 1] + pixels[index + 2]) / 3;
-        if (brightness > 34 && Math.random() < 0.9) {
+        if (brightness > 28 && Math.random() < 0.94) {
           targets.push({
             x: x,
             y: y,
-            tone: clamp(brightness / 255, 0.22, 0.92)
+            tone: clamp(brightness / 255, 0.28, 1)
           });
         }
       }
     }
 
-    var maxParticles = rect.width < 420 ? 5600 : 11800;
+    var maxParticles = rect.width < 420 ? 6200 : 12400;
     while (targets.length > maxParticles) {
       targets.splice(Math.floor(Math.random() * targets.length), 1);
     }
@@ -480,14 +546,14 @@
     portraitParticles = targets.map(function (target, index) {
       var existing = portraitParticles[index];
       return {
-        x: existing ? existing.x : target.x + (Math.random() - 0.5) * rect.width,
-        y: existing ? existing.y : target.y + (Math.random() - 0.5) * rect.height,
+        x: existing ? existing.x : target.x + (Math.random() - 0.5) * 18,
+        y: existing ? existing.y : target.y + (Math.random() - 0.5) * 18,
         tx: target.x,
         ty: target.y,
         vx: existing ? existing.vx : 0,
         vy: existing ? existing.vy : 0,
-        size: Math.random() * 1.25 + target.tone * 2.1,
-        alpha: target.tone,
+        size: Math.random() * 1.35 + target.tone * 2.35,
+        alpha: clamp(target.tone * 1.18, 0.4, 1),
         shimmer: Math.random() * Math.PI * 2
       };
     });
@@ -502,7 +568,7 @@
     if (!bgPoints.length) return;
 
     bgCtx.save();
-    bgCtx.globalCompositeOperation = "screen";
+    bgCtx.globalCompositeOperation = "lighter";
 
     for (var i = 0; i < bgPoints.length; i += 1) {
       var p = bgPoints[i];
@@ -510,14 +576,23 @@
       var driftY = Math.cos(time * p.speed * 0.72 + p.phase) * p.drift * 0.55;
       var pulse = 0.66 + Math.sin(time * 0.0012 + p.phase) * 0.28;
       var alpha = clamp(p.alpha * pulse, 0.04, 0.92);
+      var focusX = (p.x - rect.width * 0.5) / (rect.width * 0.33);
+      var focusY = (p.y - rect.height * 0.48) / (rect.height * 0.39);
+      var focusDistance = focusX * focusX + focusY * focusY;
+      var focusDamp = 1 - clamp(1.12 - focusDistance, 0, 1) * 0.42;
+      var titleBand = p.y > rect.height * 0.58 && p.y < rect.height * 0.82 && Math.abs(p.x - rect.width * 0.5) < rect.width * 0.45;
+      if (titleBand) {
+        focusDamp *= 0.36;
+      }
+      alpha *= focusDamp;
 
       bgCtx.fillStyle = "rgba(" + p.r + ", " + p.g + ", " + p.b + ", " + alpha + ")";
       bgCtx.fillRect(p.x + driftX, p.y + driftY, p.size, p.size);
 
-      if (p.size > 1.6 && alpha > 0.48) {
-        bgCtx.fillStyle = "rgba(" + p.r + ", " + p.g + ", " + p.b + ", " + alpha * 0.18 + ")";
-        bgCtx.fillRect(p.x + driftX - p.size, p.y + driftY, p.size * 3.2, 0.7);
-        bgCtx.fillRect(p.x + driftX, p.y + driftY - p.size, 0.7, p.size * 3.2);
+      if ((p.metallic || p.size > 1.7) && alpha > 0.4) {
+        bgCtx.fillStyle = "rgba(" + p.r + ", " + p.g + ", " + p.b + ", " + alpha * 0.26 + ")";
+        bgCtx.fillRect(p.x + driftX - p.size * 1.4, p.y + driftY + p.size * 0.35, p.size * 3.8, 0.8);
+        bgCtx.fillRect(p.x + driftX + p.size * 0.35, p.y + driftY - p.size * 1.4, 0.8, p.size * 3.8);
       }
     }
 
@@ -553,10 +628,10 @@
       p.x += p.vx;
       p.y += p.vy;
 
-      var shimmer = 0.56 + Math.sin(time * 0.0011 + p.shimmer) * 0.18;
-      var alpha = clamp(shimmer, 0.3, 0.82);
-      titleCtx.fillStyle = "rgba(238, 244, 236, " + alpha + ")";
-      titleCtx.fillRect(p.x, p.y, p.size, p.size);
+      var shimmer = 0.84 + Math.sin(time * 0.0011 + p.shimmer) * 0.18;
+      var alpha = clamp(shimmer, 0.68, 1);
+      titleCtx.fillStyle = "rgba(248, 249, 244, " + alpha + ")";
+      titleCtx.fillRect(p.x, p.y, p.size * 1.22, p.size * 1.22);
     }
 
     drawSparkles(titleCtx, titleSparkles);
@@ -573,8 +648,8 @@
     if (portraitDraw) {
       portraitCtx.save();
       portraitCtx.globalCompositeOperation = "screen";
-      portraitCtx.globalAlpha = 0.3;
-      portraitCtx.filter = "contrast(1.2) brightness(1.04)";
+      portraitCtx.globalAlpha = 0.2;
+      portraitCtx.filter = "grayscale(1) contrast(1.28) brightness(1.08)";
       portraitCtx.drawImage(
         portraitImage,
         portraitDraw.x,
@@ -611,9 +686,9 @@
       p.x += p.vx;
       p.y += p.vy;
 
-      var shimmer = 0.82 + Math.sin(time * 0.0009 + p.shimmer) * 0.14;
-      var alpha = clamp(p.alpha * shimmer, 0.34, 0.98);
-      portraitCtx.fillStyle = "rgba(248, 248, 238, " + alpha + ")";
+      var shimmer = 0.9 + Math.sin(time * 0.0009 + p.shimmer) * 0.12;
+      var alpha = clamp(p.alpha * shimmer, 0.46, 1);
+      portraitCtx.fillStyle = "rgba(250, 250, 244, " + alpha + ")";
       portraitCtx.fillRect(p.x, p.y, p.size, p.size);
     }
 
@@ -757,7 +832,7 @@
 
   function typeCode(text) {
     if (typingTimer) window.clearInterval(typingTimer);
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || text.length > 700) {
       codeOutput.textContent = text;
       return;
     }
