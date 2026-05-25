@@ -27,6 +27,7 @@
   var titleSparkles = [];
   var portraitSparkles = [];
   var bgPoints = [];
+  var bgRibbons = [];
   var titleCtx = titleCanvas.getContext("2d");
   var portraitCtx = portraitCanvas ? portraitCanvas.getContext("2d") : null;
   var bgImage = new Image();
@@ -240,6 +241,7 @@
   function buildBackgroundParticles() {
     var rect = bgCanvas.getBoundingClientRect();
     bgPoints = [];
+    bgRibbons = [];
 
     if (!bgReady || !bgImage.naturalWidth || !rect.width || !rect.height) return;
 
@@ -369,6 +371,48 @@
     var totalMax = rect.width < 560 ? 9800 : 18000;
     while (bgPoints.length > totalMax) {
       bgPoints.splice(Math.floor(Math.random() * bgPoints.length), 1);
+    }
+
+    buildGalaxyRibbons(rect);
+  }
+
+  function buildGalaxyRibbons(rect) {
+    var ribbonColors = [
+      { r: 98, g: 197, b: 255, glow: "rgba(98, 197, 255, 0.86)" },
+      { r: 255, g: 219, b: 112, glow: "rgba(255, 219, 112, 0.84)" },
+      { r: 137, g: 244, b: 224, glow: "rgba(137, 244, 224, 0.7)" },
+      { r: 255, g: 156, b: 219, glow: "rgba(255, 156, 219, 0.68)" },
+      { r: 234, g: 241, b: 255, glow: "rgba(234, 241, 255, 0.84)" }
+    ];
+
+    var ribbonCount = rect.width < 560 ? 6 : 10;
+    for (var i = 0; i < ribbonCount; i += 1) {
+      var color = ribbonColors[i % ribbonColors.length];
+      var points = [];
+      var offset = (i - ribbonCount / 2) * rect.height * 0.018;
+      var phase = Math.random() * Math.PI * 2;
+      var amplitude = rect.height * (0.035 + Math.random() * 0.042);
+      var lift = rect.height * (0.08 + Math.random() * 0.18);
+
+      for (var step = 0; step <= 11; step += 1) {
+        var t = step / 11;
+        var x = -rect.width * 0.22 + t * rect.width * 1.48 + Math.sin(t * 7 + phase) * rect.width * 0.042;
+        var y = rect.height * (0.74 - t * 0.54) + offset - lift + Math.sin(t * 8.5 + phase) * amplitude;
+        points.push({ x: x, y: y });
+      }
+
+      bgRibbons.push({
+        points: points,
+        r: color.r,
+        g: color.g,
+        b: color.b,
+        glow: color.glow,
+        alpha: 0.035 + Math.random() * 0.085,
+        width: rect.width * (0.004 + Math.random() * 0.008),
+        phase: phase,
+        speed: 0.00014 + Math.random() * 0.00016,
+        shimmer: 0.16 + Math.random() * 0.18
+      });
     }
   }
 
@@ -565,7 +609,9 @@
     bgCtx.fillStyle = "#000000";
     bgCtx.fillRect(0, 0, rect.width, rect.height);
 
-    if (!bgPoints.length) return;
+    if (!bgPoints.length && !bgRibbons.length) return;
+
+    drawGalaxyRibbons(bgCtx, time, rect);
 
     bgCtx.save();
     bgCtx.globalCompositeOperation = "lighter";
@@ -597,6 +643,78 @@
     }
 
     bgCtx.restore();
+  }
+
+  function drawGalaxyRibbons(ctx, time, rect) {
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+
+    for (var i = 0; i < bgRibbons.length; i += 1) {
+      var ribbon = bgRibbons[i];
+      var wave = Math.sin(time * ribbon.speed + ribbon.phase) * ribbon.shimmer;
+      var alpha = clamp(ribbon.alpha + wave, 0.05, 0.36);
+
+      ctx.save();
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.shadowColor = ribbon.glow;
+      ctx.shadowBlur = rect.width < 560 ? 14 : 26;
+
+      ctx.beginPath();
+      for (var p = 0; p < ribbon.points.length; p += 1) {
+        var point = ribbon.points[p];
+        var x = point.x + Math.sin(time * 0.00018 + ribbon.phase + p) * 6;
+        var y = point.y + Math.cos(time * 0.00016 + ribbon.phase + p) * 5;
+        if (p === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          var previous = ribbon.points[p - 1];
+          var cpX = (previous.x + x) / 2;
+          var cpY = (previous.y + y) / 2;
+          ctx.quadraticCurveTo(previous.x, previous.y, cpX, cpY);
+        }
+      }
+
+      var wideGradient = ctx.createLinearGradient(0, rect.height, rect.width, 0);
+      wideGradient.addColorStop(0, "rgba(68, 220, 211, " + alpha * 0.62 + ")");
+      wideGradient.addColorStop(0.42, "rgba(" + ribbon.r + ", " + ribbon.g + ", " + ribbon.b + ", " + alpha + ")");
+      wideGradient.addColorStop(0.72, "rgba(255, 220, 120, " + alpha * 0.76 + ")");
+      wideGradient.addColorStop(1, "rgba(242, 247, 255, " + alpha * 0.46 + ")");
+      ctx.strokeStyle = wideGradient;
+      ctx.lineWidth = ribbon.width * 1.8;
+      ctx.stroke();
+
+      ctx.shadowBlur = rect.width < 560 ? 7 : 14;
+      ctx.strokeStyle = "rgba(248, 250, 255, " + clamp(alpha * 1.85, 0.08, 0.28) + ")";
+      ctx.lineWidth = Math.max(1, ribbon.width * 0.22);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.translate(rect.width * 0.5, rect.height * 0.43);
+    ctx.scale(1.15, 0.78);
+    var portraitFade = ctx.createRadialGradient(0, 0, 0, 0, 0, rect.height * 0.34);
+    portraitFade.addColorStop(0, "rgba(0, 0, 0, 0.58)");
+    portraitFade.addColorStop(0.58, "rgba(0, 0, 0, 0.24)");
+    portraitFade.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = portraitFade;
+    ctx.fillRect(-rect.width, -rect.height, rect.width * 2, rect.height * 2);
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-out";
+    var titleFade = ctx.createLinearGradient(0, rect.height * 0.55, 0, rect.height * 0.86);
+    titleFade.addColorStop(0, "rgba(0, 0, 0, 0)");
+    titleFade.addColorStop(0.36, "rgba(0, 0, 0, 0.42)");
+    titleFade.addColorStop(0.82, "rgba(0, 0, 0, 0.5)");
+    titleFade.addColorStop(1, "rgba(0, 0, 0, 0)");
+    ctx.fillStyle = titleFade;
+    ctx.fillRect(rect.width * 0.05, rect.height * 0.55, rect.width * 0.9, rect.height * 0.32);
+    ctx.restore();
+
+    ctx.restore();
   }
 
   function drawTitle(time) {
