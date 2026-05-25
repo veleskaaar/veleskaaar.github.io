@@ -7,6 +7,7 @@
   var titleCanvas = hero.querySelector("[data-hero-title]");
   var titleField = hero.querySelector("[data-hero-title-field]");
   var portraitCanvas = hero.querySelector("[data-hero-portrait]");
+  var portraitField = hero.querySelector("[data-hero-portrait-field]");
   var codePanel = home.querySelector("[data-code-panel]");
   var codeOutput = home.querySelector("[data-code-output]");
   var codeTitle = home.querySelector("#quiet-code-title");
@@ -22,12 +23,13 @@
   var columbiaEmail = "xc2826@columbia.edu";
   var zhimiaoEmail = "zhimiao-email@example.com";
   var titleParticles = [];
-  var titleSparkles = [];
   var portraitParticles = [];
   var bgPoints = [];
   var bgLines = [];
   var titleCtx = titleCanvas.getContext("2d");
   var portraitCtx = portraitCanvas ? portraitCanvas.getContext("2d") : null;
+  var bgImage = new Image();
+  var bgReady = false;
   var portraitImage = new Image();
   var portraitReady = false;
   var portraitDraw = null;
@@ -158,39 +160,19 @@
   }
 
   function createBackground() {
-    var rect = resizeCanvas(bgCanvas);
-    var count = prefersReducedMotion ? 120 : Math.floor(clamp(rect.width / 4.8, 180, 360));
-    bgPoints = [];
-    bgLines = [];
+    resizeCanvas(bgCanvas);
+  }
 
-    for (var i = 0; i < count; i += 1) {
-      var palette = Math.random();
-      bgPoints.push({
-        x: Math.random() * rect.width,
-        y: Math.random() * rect.height,
-        z: Math.random() * 0.9 + 0.1,
-        speed: Math.random() * 0.018 + 0.004,
-        phase: Math.random() * Math.PI * 2,
-        color: palette < 0.42
-          ? "144, 214, 255"
-          : palette < 0.78
-            ? "255, 184, 220"
-            : "238, 244, 236"
-      });
-    }
+  function loadBackgroundImage() {
+    if (!bgCanvas) return;
 
-    for (var j = 0; j < 34; j += 1) {
-      var color = Math.random() > 0.52 ? "148, 215, 255" : "255, 177, 218";
-      bgLines.push({
-        x: rect.width * (0.18 + Math.random() * 0.68),
-        y: rect.height * (0.14 + Math.random() * 0.72),
-        len: Math.random() * 360 + 160,
-        alpha: Math.random() * 0.08 + 0.025,
-        speed: Math.random() * 0.012 + 0.004,
-        angle: -0.44 + Math.random() * 0.88,
-        color: color,
-        width: Math.random() * 1.4 + 0.6
-      });
+    bgImage.onload = function () {
+      bgReady = true;
+    };
+    bgImage.src = bgCanvas.getAttribute("data-hero-galaxy") || "";
+
+    if (bgImage.complete && bgImage.naturalWidth) {
+      bgReady = true;
     }
   }
 
@@ -328,65 +310,17 @@
     bgCtx.fillStyle = "#000000";
     bgCtx.fillRect(0, 0, rect.width, rect.height);
 
-    var slowTime = time * 0.00008;
+    if (!bgReady || !bgImage.naturalWidth) return;
+
+    var scale = Math.max(rect.width / bgImage.naturalWidth, rect.height / bgImage.naturalHeight);
+    var drawWidth = bgImage.naturalWidth * scale;
+    var drawHeight = bgImage.naturalHeight * scale;
+    var drawX = (rect.width - drawWidth) / 2;
+    var drawY = (rect.height - drawHeight) / 2;
 
     bgCtx.save();
-    bgCtx.globalCompositeOperation = "screen";
-    var blueCloud = bgCtx.createRadialGradient(rect.width * 0.32, rect.height * 0.38, 0, rect.width * 0.32, rect.height * 0.38, rect.width * 0.45);
-    blueCloud.addColorStop(0, "rgba(144, 214, 255, 0.14)");
-    blueCloud.addColorStop(0.45, "rgba(144, 214, 255, 0.045)");
-    blueCloud.addColorStop(1, "rgba(144, 214, 255, 0)");
-    bgCtx.fillStyle = blueCloud;
-    bgCtx.fillRect(0, 0, rect.width, rect.height);
-
-    var pinkCloud = bgCtx.createRadialGradient(rect.width * 0.72, rect.height * 0.34, 0, rect.width * 0.72, rect.height * 0.34, rect.width * 0.42);
-    pinkCloud.addColorStop(0, "rgba(255, 184, 220, 0.12)");
-    pinkCloud.addColorStop(0.42, "rgba(255, 184, 220, 0.038)");
-    pinkCloud.addColorStop(1, "rgba(255, 184, 220, 0)");
-    bgCtx.fillStyle = pinkCloud;
-    bgCtx.fillRect(0, 0, rect.width, rect.height);
-    bgCtx.restore();
-
-    bgCtx.save();
-    bgCtx.globalCompositeOperation = "screen";
-
-    for (var i = 0; i < bgLines.length; i += 1) {
-      var line = bgLines[i];
-      if (!prefersReducedMotion) {
-        line.x += Math.cos(line.angle) * line.speed;
-        line.y += Math.sin(line.angle) * line.speed;
-      }
-      if (line.x > rect.width + line.len) line.x = -line.len;
-      if (line.x < -line.len) line.x = rect.width + line.len;
-      if (line.y > rect.height + line.len) line.y = -line.len;
-      if (line.y < -line.len) line.y = rect.height + line.len;
-
-      bgCtx.beginPath();
-      bgCtx.moveTo(line.x, line.y);
-      bgCtx.lineTo(line.x + Math.cos(line.angle) * line.len, line.y + Math.sin(line.angle) * line.len);
-      bgCtx.strokeStyle = "rgba(" + line.color + ", " + line.alpha + ")";
-      bgCtx.lineWidth = line.width;
-      bgCtx.stroke();
-    }
-
-    for (var j = 0; j < bgPoints.length; j += 1) {
-      var point = bgPoints[j];
-      if (!prefersReducedMotion) {
-        point.y += point.speed * (0.4 + point.z);
-        point.x += Math.sin(slowTime + point.phase) * 0.035;
-      }
-      if (point.y > rect.height + 8) {
-        point.y = -8;
-        point.x = Math.random() * rect.width;
-      }
-
-      var pulse = 0.74 + Math.sin(time * 0.00075 + point.phase) * 0.26;
-      var alpha = (0.08 + point.z * 0.34) * pulse;
-      var size = point.z * 1.45;
-      bgCtx.fillStyle = "rgba(" + point.color + ", " + alpha + ")";
-      bgCtx.fillRect(point.x, point.y, size, size);
-    }
-
+    bgCtx.filter = "saturate(0.98) contrast(1.02) brightness(0.68)";
+    bgCtx.drawImage(bgImage, drawX, drawY, drawWidth, drawHeight);
     bgCtx.restore();
   }
 
@@ -423,22 +357,6 @@
       var alpha = clamp(shimmer, 0.3, 0.82);
       titleCtx.fillStyle = "rgba(238, 244, 236, " + alpha + ")";
       titleCtx.fillRect(p.x, p.y, p.size, p.size);
-    }
-
-    for (var s = titleSparkles.length - 1; s >= 0; s -= 1) {
-      var sparkle = titleSparkles[s];
-      sparkle.life -= prefersReducedMotion ? 1 : 0.018;
-      sparkle.x += sparkle.vx;
-      sparkle.y += sparkle.vy;
-      sparkle.vx *= 0.985;
-      sparkle.vy *= 0.985;
-      if (sparkle.life <= 0) {
-        titleSparkles.splice(s, 1);
-        continue;
-      }
-      var glow = sparkle.life * (0.42 + Math.sin(time * 0.006 + sparkle.phase) * 0.22);
-      titleCtx.fillStyle = "rgba(" + sparkle.color + ", " + clamp(glow, 0, 0.82) + ")";
-      titleCtx.fillRect(sparkle.x, sparkle.y, sparkle.size, sparkle.size);
     }
 
     titleCtx.restore();
@@ -513,30 +431,14 @@
     pointer.x = event.clientX - rect.left;
     pointer.y = event.clientY - rect.top;
     pointer.lastMove = performance.now();
-    addTitleSparkles();
   }
 
-  function addTitleSparkles() {
-    if (prefersReducedMotion || !pointer.active) return;
-
-    var amount = titleSparkles.length > 180 ? 2 : 5;
-    for (var i = 0; i < amount; i += 1) {
-      var color = Math.random() > 0.48 ? "144, 214, 255" : "255, 184, 220";
-      titleSparkles.push({
-        x: pointer.x + (Math.random() - 0.5) * 18,
-        y: pointer.y + (Math.random() - 0.5) * 18,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: Math.random() * 2 + 0.8,
-        life: Math.random() * 0.45 + 0.55,
-        phase: Math.random() * Math.PI * 2,
-        color: color
-      });
-    }
-
-    while (titleSparkles.length > 240) {
-      titleSparkles.shift();
-    }
+  function portraitPointerPosition(event) {
+    var rect = portraitCanvas.getBoundingClientRect();
+    portraitPointer.x = event.clientX - rect.left;
+    portraitPointer.y = event.clientY - rect.top;
+    portraitPointer.lastMove = performance.now();
+    pointer.lastMove = portraitPointer.lastMove;
   }
 
   function setupAudio() {
@@ -756,6 +658,30 @@
       activateAudio();
     });
 
+    if (portraitField && portraitCanvas) {
+      portraitField.addEventListener("pointerenter", function (event) {
+        portraitPointer.active = true;
+        portraitPointerPosition(event);
+        activateAudio();
+      });
+
+      portraitField.addEventListener("pointermove", function (event) {
+        portraitPointer.active = true;
+        portraitPointerPosition(event);
+        activateAudio();
+      });
+
+      portraitField.addEventListener("pointerleave", function () {
+        portraitPointer.active = false;
+        softenAudio();
+      });
+
+      portraitField.addEventListener("pointerdown", function (event) {
+        portraitPointerPosition(event);
+        activateAudio();
+      });
+    }
+
     home.addEventListener("click", function (event) {
       if (event.target.closest("[data-close-profile]")) {
         dismissProfile();
@@ -818,6 +744,7 @@
     observer.observe(revealSection);
   }
 
+  loadBackgroundImage();
   createBackground();
   buildTitleParticles();
   loadPortraitImage();
