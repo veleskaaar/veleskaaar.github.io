@@ -12,9 +12,11 @@
   var codeOutput = home.querySelector("[data-code-output]");
   var codeTitle = home.querySelector("#quiet-code-title");
   var codeActions = home.querySelector("[data-code-actions]");
+  var codeWindow = home.querySelector(".quiet-code__window");
   var contactForm = home.querySelector("[data-contact-form]");
   var contactSubject = home.querySelector("[data-contact-subject]");
   var contactMessage = home.querySelector("[data-contact-message]");
+  var contactStatus = home.querySelector("[data-contact-status]");
   var revealSection = home.querySelector("[data-reveal-section]");
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var pointer = { x: 0, y: 0, active: false, lastMove: 0, lastSparkle: 0 };
@@ -108,27 +110,7 @@
     },
     cv: {
       title: "module.cv",
-      code: block([
-        "## Xi (Veleska) Chen",
-        "> M.A. Economics student, Columbia University",
-        "",
-        "## Research interests",
-        "- Behavioral economics",
-        "- Microeconomic theory",
-        "- Organizational behavior and psychology",
-        "- Computational social science",
-        "",
-        "## Methods",
-        "- Formal economic reasoning",
-        "- Experimental design and survey-based measurement",
-        "- Discrete choice methods",
-        "- NLP/text-as-data analysis",
-        "",
-        "## Programming and tools",
-        "- Python, C++, SPSS, SQL, Stata, MATLAB",
-        "",
-        "The PDF preview opens below this text."
-      ]),
+      code: "",
       actions: []
     },
     other: {
@@ -1092,6 +1074,9 @@
     codePanel.classList.toggle("is-cv", name === "cv");
     codePanel.classList.add("is-open");
     codePanel.setAttribute("aria-hidden", "false");
+    if (codeWindow) codeWindow.scrollTop = 0;
+    if (codeOutput && codeOutput.parentElement) codeOutput.parentElement.scrollTop = 0;
+    if (name === "contact") setContactStatus("");
   }
 
   function closePanel() {
@@ -1099,6 +1084,57 @@
     codePanel.classList.remove("is-contact");
     codePanel.classList.remove("is-cv");
     codePanel.setAttribute("aria-hidden", "true");
+  }
+
+  function setContactStatus(message) {
+    if (!contactStatus) return;
+    contactStatus.textContent = message;
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise(function (resolve, reject) {
+      var field = document.createElement("textarea");
+      field.value = text;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      try {
+        document.execCommand("copy");
+        resolve();
+      } catch (error) {
+        reject(error);
+      } finally {
+        document.body.removeChild(field);
+      }
+    });
+  }
+
+  function fillContactTemplate(name) {
+    var templates = {
+      research: {
+        subject: "Research conversation",
+        message: "Hi Xi,\n\nI came across your work and would be glad to connect about related research interests.\n\n"
+      },
+      collab: {
+        subject: "Possible collaboration",
+        message: "Hi Xi,\n\nI would like to reach out about a possible collaboration related to behavioral economics, organizations, or text-as-data methods.\n\n"
+      },
+      hello: {
+        subject: "Hello Xi",
+        message: "Hi Xi,\n\nI wanted to say hello and connect.\n\n"
+      }
+    };
+    var template = templates[name];
+    if (!template) return;
+    if (contactSubject) contactSubject.value = template.subject;
+    if (contactMessage) contactMessage.value = template.message;
+    setContactStatus("template.loaded: " + template.subject);
   }
 
   function dismissProfile() {
@@ -1133,6 +1169,7 @@
       "&subject=" + encodeURIComponent(subject) +
       "&body=" + encodeURIComponent(message);
 
+    setContactStatus("opening.email.draft -> " + outlookEmail);
     window.location.href = mailto;
   }
 
@@ -1186,6 +1223,25 @@
     home.addEventListener("click", function (event) {
       if (event.target.closest("[data-close-profile]")) {
         dismissProfile();
+        return;
+      }
+
+      var copyButton = event.target.closest("[data-copy-email]");
+      if (copyButton) {
+        var email = copyButton.getAttribute("data-copy-email");
+        copyText(email)
+          .then(function () {
+            setContactStatus("copied: " + email);
+          })
+          .catch(function () {
+            setContactStatus("copy.failed: select the email manually");
+          });
+        return;
+      }
+
+      var templateButton = event.target.closest("[data-contact-template]");
+      if (templateButton) {
+        fillContactTemplate(templateButton.getAttribute("data-contact-template"));
         return;
       }
 

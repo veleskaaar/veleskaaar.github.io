@@ -84,8 +84,25 @@
       </div>
       <form class="quiet-contact-form" data-contact-form>
         <div class="quiet-contact-form__emails">
-          <span>Columbia: xc2826@columbia.edu</span>
-          <span>Outlook: veleskaaar@outlook.com</span>
+          <button type="button" class="quiet-contact-card" data-copy-email="xc2826@columbia.edu">
+            <span>Columbia</span>
+            <strong>xc2826@columbia.edu</strong>
+            <small>copy</small>
+          </button>
+          <button type="button" class="quiet-contact-card" data-copy-email="veleskaaar@outlook.com">
+            <span>Outlook</span>
+            <strong>veleskaaar@outlook.com</strong>
+            <small>copy</small>
+          </button>
+        </div>
+        <div class="quiet-contact-form__shortcuts" aria-label="Message templates">
+          <button type="button" data-contact-template="research">research note</button>
+          <button type="button" data-contact-template="collab">collaboration</button>
+          <button type="button" data-contact-template="hello">quick hello</button>
+        </div>
+        <div class="quiet-contact-form__links" aria-label="External links">
+          <a href="https://github.com/veleskaaar" target="_blank" rel="noopener">github.open()</a>
+          <a href="https://www.linkedin.com/in/xi-veleska-chen-226176303/" target="_blank" rel="noopener">linkedin.open()</a>
         </div>
         <label>
           <span>subject</span>
@@ -96,6 +113,7 @@
           <textarea data-contact-message rows="5" placeholder="Write a short message here..."></textarea>
         </label>
         <button type="submit">send.message()</button>
+        <p class="quiet-contact-form__status" data-contact-status aria-live="polite"></p>
       </form>
       <div class="quiet-code__actions" data-code-actions></div>
     </section>
