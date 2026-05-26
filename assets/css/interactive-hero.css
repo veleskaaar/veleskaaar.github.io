@@ -609,7 +609,7 @@ body.interactive-home-shell {
 .quiet-code__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(1, 2, 4, 0.72);
+  background: rgba(0, 0, 0, 0.76);
   backdrop-filter: blur(14px);
 }
 
@@ -618,14 +618,12 @@ body.interactive-home-shell {
   width: min(1120px, 100%);
   max-height: min(760px, calc(100vh - 42px));
   overflow: auto;
-  border: 1px solid rgba(185, 232, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(149, 225, 255, 0.055), transparent 30%),
-    rgba(0, 3, 7, 0.985);
+  background: #000000;
   box-shadow:
     0 34px 120px rgba(0, 0, 0, 0.76),
-    0 0 58px rgba(149, 225, 255, 0.14);
+    0 0 44px rgba(255, 255, 255, 0.08);
   transform: translateY(18px) scale(0.98);
   transition: transform 280ms cubic-bezier(0.18, 0.85, 0.25, 1);
 }
@@ -646,12 +644,12 @@ body.interactive-home-shell {
   min-height: 42px;
   padding: 0 12px;
   border-bottom: 1px solid rgba(244, 245, 242, 0.12);
-  background: rgba(255, 255, 255, 0.035);
+  background: #050505;
 }
 
 .quiet-code__bar p {
   margin: 0 0 0 8px;
-  color: rgba(208, 232, 245, 0.68);
+  color: rgba(255, 255, 255, 0.72);
   font-family: var(--terminal-font);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
@@ -692,14 +690,12 @@ body.interactive-home-shell {
   margin: 0;
   padding: clamp(18px, 4vw, 30px);
   overflow: auto;
-  color: #f7fbff;
+  color: #ffffff;
   font-family: var(--terminal-font);
   font-size: clamp(0.92rem, 1.22vw, 1.02rem);
   line-height: 1.78;
   white-space: pre-wrap;
-  background:
-    linear-gradient(90deg, rgba(149, 225, 255, 0.035), transparent 24%),
-    rgba(0, 0, 0, 0.16);
+  background: #000000;
 }
 
 .quiet-code__body code {
@@ -713,36 +709,36 @@ body.interactive-home-shell {
 }
 
 .quiet-code__line--command {
-  color: rgba(149, 225, 255, 0.96);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .quiet-code__line--heading {
   margin-top: 14px;
-  color: #f9fdff;
+  color: #ffffff;
   font-weight: 750;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(149, 225, 255, 0.2);
+  text-shadow: none;
 }
 
 .quiet-code__line--heading::before {
   content: "// ";
-  color: rgba(149, 225, 255, 0.9);
+  color: rgba(255, 255, 255, 0.58);
 }
 
 .quiet-code__line--meta {
-  color: #ffdea0;
+  color: rgba(255, 255, 255, 0.86);
   font-weight: 650;
 }
 
 .quiet-code__line--text {
-  color: rgba(248, 251, 255, 0.96);
+  color: rgba(255, 255, 255, 0.95);
   padding-left: 14px;
-  border-left: 1px solid rgba(149, 225, 255, 0.28);
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .quiet-code__line--bullet {
-  color: #d6f0ff;
+  color: rgba(255, 255, 255, 0.92);
   padding-left: 14px;
 }
 
@@ -811,12 +807,10 @@ body.interactive-home-shell {
   gap: 4px 12px;
   align-items: center;
   padding: 12px 14px;
-  border: 1px solid rgba(149, 225, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
-  color: #f7fbff;
-  background:
-    linear-gradient(135deg, rgba(149, 225, 255, 0.12), rgba(255, 218, 160, 0.045)),
-    rgba(255, 255, 255, 0.035);
+  color: #ffffff;
+  background: #050505;
   font-family: var(--terminal-font);
   text-align: left;
   cursor: pointer;
@@ -829,16 +823,14 @@ body.interactive-home-shell {
 .quiet-contact-card:hover,
 .quiet-contact-card:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(255, 222, 160, 0.66);
-  background:
-    linear-gradient(135deg, rgba(149, 225, 255, 0.18), rgba(255, 218, 160, 0.08)),
-    rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: #0b0b0b;
   outline: none;
 }
 
 .quiet-contact-card span,
 .quiet-contact-card small {
-  color: rgba(168, 226, 255, 0.82);
+  color: rgba(255, 255, 255, 0.64);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -854,7 +846,7 @@ body.interactive-home-shell {
 
 .quiet-contact-card small {
   justify-self: end;
-  color: rgba(255, 222, 160, 0.86);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .quiet-contact-form__shortcuts {
@@ -868,8 +860,8 @@ body.interactive-home-shell {
   border: 1px solid rgba(244, 245, 242, 0.18);
   border-radius: 999px;
   padding: 7px 11px;
-  color: rgba(244, 250, 255, 0.88);
-  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.86);
+  background: #050505;
   font-family: var(--terminal-font);
   font-size: 0.72rem;
   cursor: pointer;
@@ -878,8 +870,8 @@ body.interactive-home-shell {
 .quiet-contact-form__shortcuts button:hover,
 .quiet-contact-form__shortcuts button:focus-visible {
   color: #ffffff;
-  border-color: rgba(149, 225, 255, 0.5);
-  background: rgba(149, 225, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.46);
+  background: #0b0b0b;
   outline: none;
 }
 
@@ -893,11 +885,11 @@ body.interactive-home-shell {
   min-height: 34px;
   display: inline-grid;
   place-items: center;
-  border: 1px solid rgba(255, 222, 160, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
   padding: 7px 11px;
-  color: rgba(255, 236, 190, 0.92);
-  background: rgba(255, 218, 160, 0.055);
+  color: rgba(255, 255, 255, 0.86);
+  background: #050505;
   font-family: var(--terminal-font);
   font-size: 0.72rem;
   text-decoration: none;
@@ -906,8 +898,8 @@ body.interactive-home-shell {
 .quiet-contact-form__links a:hover,
 .quiet-contact-form__links a:focus-visible {
   color: #ffffff;
-  border-color: rgba(255, 222, 160, 0.62);
-  background: rgba(255, 218, 160, 0.11);
+  border-color: rgba(255, 255, 255, 0.48);
+  background: #0b0b0b;
   outline: none;
 }
 
@@ -924,11 +916,11 @@ body.interactive-home-shell {
 .quiet-contact-form input,
 .quiet-contact-form textarea {
   width: 100%;
-  border: 1px solid rgba(185, 232, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 6px;
   padding: 11px 12px;
   color: #ffffff;
-  background: rgba(0, 0, 0, 0.28);
+  background: #000000;
   font-family: var(--terminal-font);
   font-size: 0.9rem;
   line-height: 1.6;
@@ -942,11 +934,11 @@ body.interactive-home-shell {
 .quiet-contact-form > button[type="submit"] {
   width: fit-content;
   min-height: 38px;
-  border: 1px solid rgba(149, 225, 255, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 6px;
   padding: 9px 13px;
   color: #ffffff;
-  background: rgba(149, 225, 255, 0.1);
+  background: #050505;
   font-family: var(--terminal-font);
   cursor: pointer;
 }
@@ -954,7 +946,7 @@ body.interactive-home-shell {
 .quiet-contact-form__status {
   min-height: 18px;
   margin: 0;
-  color: rgba(255, 222, 160, 0.82);
+  color: rgba(255, 255, 255, 0.72);
   font-family: var(--terminal-font);
   font-size: 0.76rem;
 }
