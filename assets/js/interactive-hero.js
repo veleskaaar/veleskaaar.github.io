@@ -17,8 +17,8 @@
   var contactMessage = home.querySelector("[data-contact-message]");
   var revealSection = home.querySelector("[data-reveal-section]");
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var pointer = { x: 0, y: 0, active: false, lastMove: 0 };
-  var portraitPointer = { x: 0, y: 0, active: false, lastMove: 0 };
+  var pointer = { x: 0, y: 0, active: false, lastMove: 0, lastSparkle: 0 };
+  var portraitPointer = { x: 0, y: 0, active: false, lastMove: 0, lastSparkle: 0 };
   var profileDismissed = false;
   var columbiaEmail = "xc2826@columbia.edu";
   var outlookEmail = "veleskaaar@outlook.com";
@@ -193,23 +193,11 @@
   }
 
   function createBackground() {
-    resizeCanvas(bgCanvas);
-    buildBackgroundParticles();
+    if (bgCanvas) resizeCanvas(bgCanvas);
   }
 
   function loadBackgroundImage() {
-    if (!bgCanvas) return;
-
-    bgImage.onload = function () {
-      bgReady = true;
-      createBackground();
-    };
-    bgImage.src = bgCanvas.getAttribute("data-hero-galaxy") || "";
-
-    if (bgImage.complete && bgImage.naturalWidth) {
-      bgReady = true;
-      createBackground();
-    }
+    return;
   }
 
   function glitterColor(red, green, blue, brightness, saturation) {
@@ -460,7 +448,7 @@
       });
     }
 
-    while (list.length > 180) {
+    while (list.length > 80) {
       list.shift();
     }
   }
@@ -525,7 +513,7 @@
       }
     }
 
-    var maxParticles = rect.width < 620 ? 4600 : 9800;
+    var maxParticles = rect.width < 620 ? 3000 : 5800;
     while (targets.length > maxParticles) {
       targets.splice(Math.floor(Math.random() * targets.length), 1);
     }
@@ -583,7 +571,7 @@
     offCtx.drawImage(portraitImage, drawX, drawY, drawWidth, drawHeight);
 
     var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-    var gap = 2;
+    var gap = 3;
     var targets = [];
 
     for (var y = 0; y < offscreen.height; y += gap) {
@@ -600,7 +588,7 @@
       }
     }
 
-    var maxParticles = rect.width < 420 ? 9800 : 22000;
+    var maxParticles = rect.width < 420 ? 5200 : 9800;
     while (targets.length > maxParticles) {
       targets.splice(Math.floor(Math.random() * targets.length), 1);
     }
@@ -895,7 +883,6 @@
   }
 
   function animate(time) {
-    drawBackground(time);
     drawPortrait(time);
     drawTitle(time);
     requestAnimationFrame(animate);
@@ -906,7 +893,10 @@
     pointer.x = event.clientX - rect.left;
     pointer.y = event.clientY - rect.top;
     pointer.lastMove = performance.now();
-    addSparkles(titleSparkles, pointer.x, pointer.y, 2);
+    if (pointer.lastMove - pointer.lastSparkle > 42) {
+      addSparkles(titleSparkles, pointer.x, pointer.y, 1);
+      pointer.lastSparkle = pointer.lastMove;
+    }
   }
 
   function portraitPointerPosition(event) {
@@ -915,7 +905,10 @@
     portraitPointer.y = event.clientY - rect.top;
     portraitPointer.lastMove = performance.now();
     pointer.lastMove = portraitPointer.lastMove;
-    addSparkles(portraitSparkles, portraitPointer.x, portraitPointer.y, 3);
+    if (portraitPointer.lastMove - portraitPointer.lastSparkle > 54) {
+      addSparkles(portraitSparkles, portraitPointer.x, portraitPointer.y, 1);
+      portraitPointer.lastSparkle = portraitPointer.lastMove;
+    }
   }
 
   function setupAudio() {
@@ -991,16 +984,16 @@
     }
 
     audioState.master.gain.cancelScheduledValues(ctx.currentTime);
-    audioState.master.gain.setTargetAtTime(0.038, ctx.currentTime, 0.8);
+    audioState.master.gain.setTargetAtTime(0.028, ctx.currentTime, 0.7);
 
-    var motif = [0, 4, 7, 11, 9, 7, 4, 2];
+    var motif = [0, 2, 7, 9, 11, 7, 4, 2];
     var base = 523.25;
     var now = ctx.currentTime + 0.06;
     for (var i = 0; i < motif.length; i += 1) {
       var ratio = Math.pow(2, motif[i] / 12);
-      playBell(base * ratio, now + i * 0.34, 1.25, 0.024);
+      playBell(base * ratio, now + i * 0.38, 1.35, 0.019);
       if (i === 2 || i === 5) {
-        playBell(base * ratio * 0.5, now + i * 0.34 + 0.02, 1.4, 0.011);
+        playBell(base * ratio * 0.5, now + i * 0.38 + 0.03, 1.5, 0.008);
       }
     }
 
@@ -1009,15 +1002,24 @@
       if (audioState.active && performance.now() - pointer.lastMove < 4200) {
         scheduleMotif();
       }
-    }, 3900);
+    }, 4300);
   }
 
   function activateAudio() {
     setupAudio();
     if (!audioState.ctx) return;
+    if (audioState.ctx.state === "suspended") {
+      audioState.ctx.resume();
+    }
     audioState.active = true;
     hero.classList.add("is-playing");
     scheduleMotif();
+  }
+
+  function maybeSoftenAudio() {
+    if (!pointer.active && !portraitPointer.active) {
+      softenAudio();
+    }
   }
 
   function softenAudio() {
@@ -1149,7 +1151,7 @@
 
     titleField.addEventListener("pointerleave", function () {
       pointer.active = false;
-      softenAudio();
+      maybeSoftenAudio();
     });
 
     titleField.addEventListener("pointerdown", function (event) {
@@ -1172,7 +1174,7 @@
 
       portraitField.addEventListener("pointerleave", function () {
         portraitPointer.active = false;
-        softenAudio();
+        maybeSoftenAudio();
       });
 
       portraitField.addEventListener("pointerdown", function (event) {

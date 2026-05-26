@@ -39,6 +39,18 @@ body.interactive-home-shell {
   isolation: isolate;
 }
 
+.quiet-hero__image-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center 44%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(1.08) contrast(1.04) brightness(0.78);
+  transform: scale(1.01);
+  pointer-events: none;
+}
+
 .quiet-hero::before,
 .quiet-hero::after {
   content: "";
@@ -49,20 +61,19 @@ body.interactive-home-shell {
 
 .quiet-hero::before {
   background:
-    radial-gradient(circle at 78% 12%, rgba(172, 228, 255, 0.07), transparent 26%),
-    radial-gradient(circle at 20% 84%, rgba(255, 187, 226, 0.055), transparent 27%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.14)),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.16), transparent 28%, transparent 72%, rgba(0, 0, 0, 0.16));
-  opacity: 0.5;
+    radial-gradient(circle at 50% 43%, rgba(0, 0, 0, 0.46), transparent 34%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 24%, transparent 66%, rgba(0, 0, 0, 0.32)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.08) 34%, rgba(0, 0, 0, 0.12) 66%, rgba(0, 0, 0, 0.5));
+  opacity: 0.92;
   z-index: 1;
 }
 
 .quiet-hero::after {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.014)),
-    linear-gradient(105deg, transparent 0%, rgba(255, 221, 151, 0.022) 36%, transparent 60%);
+    radial-gradient(circle at 50% 43%, rgba(238, 247, 255, 0.08), transparent 26%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.06) 72%, rgba(0, 0, 0, 0.28) 100%);
   mix-blend-mode: screen;
-  opacity: 0.5;
+  opacity: 0.58;
   z-index: 2;
 }
 
@@ -72,15 +83,15 @@ body.interactive-home-shell {
   width: 100%;
   height: 100%;
   z-index: 0;
+  display: none;
 }
 
 .quiet-hero__veil {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 42%, transparent 0%, rgba(0, 0, 0, 0.03) 34%, rgba(0, 0, 0, 0.11) 72%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.08)),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.12), transparent 24%, transparent 76%, rgba(0, 0, 0, 0.12));
+    radial-gradient(circle at 50% 42%, transparent 0%, rgba(0, 0, 0, 0.18) 36%, rgba(0, 0, 0, 0.38) 78%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.2));
   z-index: 3;
   pointer-events: none;
 }
@@ -169,13 +180,13 @@ body.interactive-home-shell {
 .quiet-hero__portrait-field::before {
   content: "";
   position: absolute;
-  inset: 2% -20% -4%;
+  inset: -2% -24% -8%;
   background:
-    radial-gradient(circle at 50% 43%, rgba(0, 0, 0, 0.58), transparent 58%),
-    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.12), transparent 42%),
+    radial-gradient(circle at 50% 44%, rgba(0, 0, 0, 0.76), transparent 58%),
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.11), transparent 42%),
     radial-gradient(circle at 50% 56%, rgba(149, 225, 255, 0.08), transparent 54%);
   filter: blur(20px);
-  opacity: 0.72;
+  opacity: 0.84;
   pointer-events: none;
 }
 
@@ -198,7 +209,17 @@ body.interactive-home-shell {
   touch-action: none;
 }
 
+.quiet-hero__title-field::before {
+  content: "";
+  position: absolute;
+  inset: 6% 2% 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.62), transparent 68%);
+  filter: blur(16px);
+  pointer-events: none;
+}
+
 .quiet-hero__title-canvas {
+  position: relative;
   width: 100%;
   height: 100%;
   display: block;
@@ -237,7 +258,7 @@ body.interactive-home-shell {
   position: absolute;
   z-index: 4;
   left: 50%;
-  bottom: 12px;
+  bottom: 6px;
   display: grid;
   justify-items: center;
   gap: 9px;
@@ -252,7 +273,7 @@ body.interactive-home-shell {
 
 .quiet-home__scroll i {
   width: 1px;
-  height: 36px;
+  height: 18px;
   background: linear-gradient(to bottom, rgba(149, 225, 255, 0), rgba(149, 225, 255, 0.7), rgba(149, 225, 255, 0));
   animation: quiet-scroll-line 2.4s ease-in-out infinite;
 }
