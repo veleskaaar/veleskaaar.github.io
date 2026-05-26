@@ -2,8 +2,23 @@
 
 <main class="quiet-home" aria-labelledby="quiet-hero-title">
   <section class="quiet-hero" aria-label="Interactive homepage">
-    <div class="quiet-hero__image-bg" style="background-image: url('{{ base_path }}/images/hero-galaxy-waterfall.jpg');" aria-hidden="true"></div>
     <canvas class="quiet-hero__background" data-hero-background aria-hidden="true"></canvas>
+    <div class="quiet-hero__terminal-layer" aria-hidden="true">
+      <div class="quiet-hero__terminal-panel quiet-hero__terminal-panel--left">
+        <span>econ.kernel</span>
+        <code>&gt; model utility(incentives, beliefs, constraints)</code>
+        <code>&gt; estimate decision_rules under uncertainty</code>
+        <code>&gt; parse institutional text_as_data</code>
+      </div>
+      <div class="quiet-hero__terminal-panel quiet-hero__terminal-panel--right">
+        <span>human.behavior</span>
+        <code>if rule.letter != rule.spirit:</code>
+        <code>&nbsp;&nbsp;observe strategic_compliance()</code>
+        <code>&nbsp;&nbsp;test reference_points()</code>
+      </div>
+      <div class="quiet-hero__terminal-line quiet-hero__terminal-line--top"></div>
+      <div class="quiet-hero__terminal-line quiet-hero__terminal-line--bottom"></div>
+    </div>
     <div class="quiet-hero__veil" aria-hidden="true"></div>
 
     <nav class="quiet-home__nav" aria-label="Home sections">
@@ -38,8 +53,25 @@
     <div class="quiet-profile__modal-backdrop" data-close-profile></div>
     <div class="quiet-profile__frame">
       <button class="quiet-profile__close" type="button" data-close-profile aria-label="Close profile">×</button>
-      <div class="quiet-profile__image-shell">
-        <img src="{{ base_path }}/images/xi-chen-photo.jpg" alt="Portrait of Xi Chen" class="quiet-profile__image quiet-profile__image--clear">
+      <div class="quiet-profile__visual">
+        <div class="quiet-profile__image-shell">
+          <img src="{{ base_path }}/images/xi-chen-photo.jpg" alt="Portrait of Xi Chen" class="quiet-profile__image quiet-profile__image--clear">
+        </div>
+        <p class="quiet-profile__affiliation">Columbia University · M.A. in Economics</p>
+        <div class="quiet-profile__socials" aria-label="Profile links">
+          <a href="https://www.linkedin.com/in/xi-veleska-chen-226176303?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <span aria-hidden="true">in</span>
+          </a>
+          <a href="https://www.instagram.com/veleskaaar?igsh=MTU2b3Blc3N0dmVnNw%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <span aria-hidden="true">ig</span>
+          </a>
+          <a href="mailto:veleskaaar@outlook.com?cc=xc2826@columbia.edu" aria-label="Email">
+            <span aria-hidden="true">@</span>
+          </a>
+          <a href="https://github.com/veleskaaar" target="_blank" rel="noopener" aria-label="GitHub">
+            <span aria-hidden="true">gh</span>
+          </a>
+        </div>
       </div>
       <div class="quiet-profile__copy">
         <p class="quiet-profile__kicker">/profile/init</p>
@@ -57,13 +89,6 @@
           Ph.D. applications and welcome conversations with researchers, students, and potential collaborators
           with related interests.
         </p>
-        <div class="quiet-profile__dock" aria-label="Profile sections">
-          <button type="button" data-panel="education">Education</button>
-          <button type="button" data-panel="research">Research</button>
-          <button type="button" data-panel="cv">CV</button>
-          <button type="button" data-panel="other">Other</button>
-          <button type="button" data-panel="contact">Contact</button>
-        </div>
       </div>
     </div>
   </section>
